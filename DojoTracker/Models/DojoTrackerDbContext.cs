@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using DojoTracker.Models;
 
 namespace DojoTracker.Models
 {
@@ -17,6 +18,7 @@ namespace DojoTracker.Models
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Dojo>().Property(dojo => dojo.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Dojo>().HasData(DojoList.Dojos);
             modelBuilder.Entity<User>().Property(user => user.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Solution>().HasNoKey();
         }
