@@ -17,8 +17,13 @@ namespace DojoTracker.Models
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Dojo>().Property(dojo => dojo.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<User>().Property(user => user.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Solution>().HasNoKey();
         }
 
         public DbSet<Dojo> Dojos { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Solution> Solutions { get; set; }
+
     }
 }

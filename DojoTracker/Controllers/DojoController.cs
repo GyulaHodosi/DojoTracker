@@ -20,9 +20,12 @@ namespace DojoTracker.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetDojos()
+        public async Task<IActionResult> GetDojos(int UserId)
         {
+            List<Solution> solutions = await _context.Solutions.Where(solution => solution.UserId == UserId).ToListAsync();
             List<Dojo> dojos = await _context.Dojos.OrderByDescending(d => d.Id).ToListAsync();
+            List<int> solvedDojoIds = solutions.Select(solution => solution.DojoId).ToList();
+            dojos = dojos.Where(dojo => solvedDojoIds.Contains(dojo.Id)).Select(dojo => { dojo.IsDone = true; return dojo; }).ToList();
             return Ok(dojos);
         }
 
