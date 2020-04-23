@@ -21,14 +21,21 @@ namespace DojoTracker.Controllers
         }
 
         [HttpGet("list")]
-        public async Task<IActionResult> GetDojos(int UserId)
+        public async Task<IActionResult> GetDojos([FromQuery] int id)
         {
             //TODO: Refactor: move business logic
             try
             {
                 var dojos = await _context.Dojos.OrderByDescending(d => d.Id).ToListAsync();
-                List<int> solvedDojoIds = await _context.Solutions.Where(solution => solution.UserId == UserId).Select(solution => solution.DojoId).ToListAsync();
-                dojos = dojos.Where(dojo => solvedDojoIds.Contains(dojo.Id)).Select(dojo => { dojo.IsDone = true; return dojo; }).ToList();
+                
+                List<int> solvedDojoIds = await _context.Solutions.Where(solution => solution.UserId == id).Select(solution => solution.DojoId).ToListAsync();
+                
+                foreach (var dojo in dojos.Where(dojo => solvedDojoIds.Contains(dojo.Id)))
+                {
+                    dojo.IsDone = true;
+                }
+                
+              
                 return Ok(dojos);
             }
             catch (Exception e)
