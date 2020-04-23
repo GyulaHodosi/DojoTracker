@@ -21,19 +21,14 @@ namespace DojoTracker.Controllers
         }
 
         [HttpGet("list")]
-        public async Task<IActionResult> GetDojos()
+        public async Task<IActionResult> GetDojos(int UserId)
         {
-            /*
-         
-         List<int> solvedDojoIds = await _context.Solutions.Where(solution => solution.UserId == userId).Select(solution => solution.DojoId).ToListAsync();
-         
-         dojos = dojos.Where(dojo => solvedDojoIds.Contains(dojo.Id)).Select(dojo => { dojo.IsDone = true; return dojo; }).ToList();
-         
-         */
-
+            //TODO: Refactor: move business logic
             try
             {
                 var dojos = await _context.Dojos.OrderByDescending(d => d.Id).ToListAsync();
+                List<int> solvedDojoIds = await _context.Solutions.Where(solution => solution.UserId == UserId).Select(solution => solution.DojoId).ToListAsync();
+                dojos = dojos.Where(dojo => solvedDojoIds.Contains(dojo.Id)).Select(dojo => { dojo.IsDone = true; return dojo; }).ToList();
                 return Ok(dojos);
             }
             catch (Exception e)
@@ -43,7 +38,7 @@ namespace DojoTracker.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("add")]
         public async Task<IActionResult> AddDojo(Dojo dojo)
         {
             _context.Dojos.Add(dojo);
