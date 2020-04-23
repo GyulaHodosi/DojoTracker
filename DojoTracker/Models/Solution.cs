@@ -17,5 +17,6 @@ namespace DojoTracker.Models
         [ForeignKey(nameof(Dojo))]
         public int DojoId { get; set; }
         public string Code { get; set; }
+        public string Language { get; set; }
     }
 }
