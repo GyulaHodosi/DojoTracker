@@ -20,7 +20,7 @@ namespace DojoTracker.Models
             modelBuilder.Entity<Dojo>().Property(dojo => dojo.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Dojo>().HasData(DojoList.Dojos);
             modelBuilder.Entity<User>().Property(user => user.Id).ValueGeneratedOnAdd();
-            modelBuilder.Entity<Solution>().HasNoKey();
+            modelBuilder.Entity<Solution>().Property(solution => solution.Id).ValueGeneratedOnAdd();
         }
 
         public DbSet<Dojo> Dojos { get; set; }
