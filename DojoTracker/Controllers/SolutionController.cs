@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DojoTracker.Controllers
 {
-    [Route("/solution")]
+    [Route("/solutions")]
     [ApiController]
     public class SolutionController : ControllerBase
     {
@@ -19,10 +19,10 @@ namespace DojoTracker.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetSolutions(int UserId)
+        [HttpGet ("list")]
+        public async Task<IActionResult> GetSolutions([FromQuery] int id)
         {
-            List<Solution> solutions = await _context.Solutions.Where(solution => solution.UserId == UserId).ToListAsync();
+            List<Solution> solutions = await _context.Solutions.Where(solution => solution.UserId == id).ToListAsync();
 
             return Ok(solutions);
         }
