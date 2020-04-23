@@ -27,12 +27,22 @@ namespace DojoTracker.Controllers
             return Ok(solutions);
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetSoluitionById(int id, [FromQuery] int userId)
+        {
+            var solutions = await _context.Solutions.Where(solution => solution.UserId == userId).ToListAsync();
+
+            var solution = solutions.FirstOrDefault(s => s.DojoId == id);
+
+            return Ok(solution);
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddSolution(Solution solution)
         {
             _context.Solutions.Add(solution);
             await _context.SaveChangesAsync();
-            return Ok();
+            return Ok("mindenki buzi");
         }
     }
 }
