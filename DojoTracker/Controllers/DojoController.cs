@@ -45,6 +45,14 @@ namespace DojoTracker.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetDojo(int id)
+        {
+            var dojo = await _context.Dojos.FirstOrDefaultAsync(dojo => dojo.Id == id);
+
+            return Ok(dojo);
+        }
+
         [HttpPost("add")]
         public async Task<IActionResult> AddDojo(Dojo dojo)
         {
