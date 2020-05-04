@@ -49,6 +49,10 @@ namespace DojoTracker.Controllers
         {
             var dojo = await _context.Dojos.FirstOrDefaultAsync(dojo => dojo.Id == id);
 
+            var isSolved = await _context.Solutions.FirstOrDefaultAsync(solution => solution.DojoId == id) != null;
+
+            dojo.IsDone = isSolved;
+
             return Ok(dojo);
         }
 
