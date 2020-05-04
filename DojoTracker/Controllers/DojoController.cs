@@ -35,7 +35,6 @@ namespace DojoTracker.Controllers
                     dojo.IsDone = true;
                 }
                 
-              
                 return Ok(dojos);
             }
             catch (Exception e)

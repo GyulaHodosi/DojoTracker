@@ -40,9 +40,20 @@ namespace DojoTracker.Controllers
         [HttpPost]
         public async Task<IActionResult> AddSolution(Solution solution)
         {
-            _context.Solutions.Add(solution);
+            var result = await _context.Solutions.SingleOrDefaultAsync(s => s.UserId == solution.UserId && s.DojoId == solution.DojoId);
+
+            if (result != null)
+            {
+                result.Code = solution.Code;
+                result.Language = solution.Language;
+            } else
+            {
+                _context.Solutions.Add(solution);
+            }
+
             await _context.SaveChangesAsync();
-            return Ok("mindenki buzi");
+
+            return Ok();
         }
     }
 }
