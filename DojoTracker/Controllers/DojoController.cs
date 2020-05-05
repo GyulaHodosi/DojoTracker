@@ -22,11 +22,11 @@ namespace DojoTracker.Controllers
         }
 
         [HttpGet("list")]
-        public async Task<IActionResult> GetDojos([FromQuery] int id)
+        public async Task<IActionResult> GetDojosByUser([FromQuery] int userId)
         {
             try
             {
-                var dojos = await _repository.ListDojosByUserIdAsync(id);
+                var dojos = await _repository.ListDojosByUserIdAsync(userId);
                 
                 return Ok(dojos);
             }
@@ -34,6 +34,20 @@ namespace DojoTracker.Controllers
             {
                 Console.WriteLine(e.Message);
                 return BadRequest();
+            }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetDojo(int id,[FromQuery] int userId)
+        {
+            try
+            {
+                var dojo = await _repository.GetDojoByIdAsync(id, userId);
+                return Ok(dojo);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Data);
             }
         }
 
