@@ -1,11 +1,11 @@
-﻿using DojoTracker.Models.Repositories.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DojoTracker.Models;
+using DojoTracker.Services.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
-namespace DojoTracker.Models.Repositories
+namespace DojoTracker.Services.Repositories
 {
     public class DojoRepository : IDojoRepository
     {
@@ -20,7 +20,7 @@ namespace DojoTracker.Models.Repositories
             _context.SaveChanges();
         }
 
-        public async Task<IEnumerable<Dojo>> GetDojos(int id)
+        public async Task<IEnumerable<Dojo>> ListDojosByUserIdAsync(int id)
         {
             var dojos = await _context.Dojos.OrderByDescending(d => d.Id).ToListAsync();
 

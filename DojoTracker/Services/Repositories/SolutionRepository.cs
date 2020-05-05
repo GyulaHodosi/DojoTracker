@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DojoTracker.Models.Repositories.Interfaces;
-using Microsoft.AspNetCore.Mvc;
+using DojoTracker.Models;
+using DojoTracker.Services.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace DojoTracker.Models.Repositories
+namespace DojoTracker.Services.Repositories
 {
     public class SolutionRepository : ISolutionRepository
     {
@@ -33,13 +32,13 @@ namespace DojoTracker.Models.Repositories
             _context.SaveChanges();
         }
 
-        public async Task<IEnumerable<Solution>> GetSolutions(int id)
+        public async Task<IEnumerable<Solution>> ListSolutionsByUserIdAsync(int id)
         {
            return await _context.Solutions.Where(solution => solution.UserId == id)
                                           .ToListAsync();
         }
 
-        public async Task<IEnumerable<Solution>> GetSolutionsById(int id, int userId)
+        public async Task<IEnumerable<Solution>> GetSolutionByDojoIdAsync(int id, int userId)
         {   
             return await _context.Solutions.Where(solution => solution.UserId == userId &&
                                                               solution.DojoId == id)

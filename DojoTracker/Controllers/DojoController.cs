@@ -5,8 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DojoTracker.Services.Repositories.Interfaces;
 using Microsoft.Extensions.Logging;
-using DojoTracker.Models.Repositories.Interfaces;
 
 namespace DojoTracker.Controllers
 {
@@ -26,7 +26,7 @@ namespace DojoTracker.Controllers
         {
             try
             {
-                var dojos = await _repository.GetDojos(id);
+                var dojos = await _repository.ListDojosByUserIdAsync(id);
                 
                 return Ok(dojos);
             }

@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DojoTracker.Models;
-using DojoTracker.Models.Repositories.Interfaces;
+using DojoTracker.Services.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using DojoTracker.Models.Repositories;
 
 namespace DojoTracker.Controllers
 {
@@ -24,7 +23,7 @@ namespace DojoTracker.Controllers
         [HttpGet("list")]
         public async Task<IActionResult> GetSolutions([FromQuery] int id)
         {
-            var solutions = await _repository.GetSolutions(id);
+            var solutions = await _repository.ListSolutionsByUserIdAsync(id);
 
             return Ok(solutions);
         }
@@ -32,7 +31,7 @@ namespace DojoTracker.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetSoluitionById(int id, [FromQuery] int userId)
         {
-            var solutions = await _repository.GetSolutionsById(id, userId);
+            var solutions = await _repository.GetSolutionByDojoIdAsync(id, userId);
 
             return Ok(solutions);
         }
