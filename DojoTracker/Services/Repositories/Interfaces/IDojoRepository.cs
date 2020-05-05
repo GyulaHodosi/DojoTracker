@@ -7,6 +7,7 @@ namespace DojoTracker.Services.Repositories.Interfaces
     public interface IDojoRepository
     {
         public Task<IEnumerable<Dojo>> ListDojosByUserIdAsync(int id);
+        public Task<Dojo> GetDojoByUserIdAsync(int id);
         public void AddDojo(Dojo dojo);
     }
 }

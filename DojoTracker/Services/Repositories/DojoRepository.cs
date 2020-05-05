@@ -14,6 +14,12 @@ namespace DojoTracker.Services.Repositories
         {
             _context = context;
         }
+
+        public Task<Dojo> GetDojoByUserIdAsync(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void AddDojo(Dojo dojo)
         {
             _context.Dojos.Add(dojo);
