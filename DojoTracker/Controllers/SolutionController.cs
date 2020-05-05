@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DojoTracker.Controllers
 {
-    [Route("/solutions")]
+    [Route("/api/solutions")]
     [ApiController]
     public class SolutionController : ControllerBase
     {
@@ -29,11 +29,11 @@ namespace DojoTracker.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetSoluitionById(int id, [FromQuery] int userId)
+        public async Task<IActionResult> GetSoluitionById(int id, [FromQuery] int userId, [FromQuery] string language)
         {
-            var solutions = await _repository.GetSolutionByDojoIdAsync(id, userId);
+            var solution = await _repository.GetSolutionByDojoIdAsync(id, userId, language);
 
-            return Ok(solutions);
+            return Ok(solution);
         }
 
         [HttpPost]
