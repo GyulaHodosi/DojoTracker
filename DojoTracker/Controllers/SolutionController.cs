@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DojoTracker.Models;
+using DojoTracker.Models.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using DojoTracker.Models.Repositories;
 
 namespace DojoTracker.Controllers
 {
@@ -12,17 +14,17 @@ namespace DojoTracker.Controllers
     [ApiController]
     public class SolutionController : ControllerBase
     {
-        private readonly DojoTrackerDbContext _context;
+        private readonly ISolutionRepository _repository; 
 
-        public SolutionController(DojoTrackerDbContext context)
+        public SolutionController(ISolutionRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
-        [HttpGet ("list")]
+        [HttpGet("list")]
         public async Task<IActionResult> GetSolutions([FromQuery] int id)
         {
-            List<Solution> solutions = await _context.Solutions.Where(solution => solution.UserId == id).ToListAsync();
+            var solutions = await _repository.GetSolutions(id);
 
             return Ok(solutions);
         }
@@ -30,25 +32,15 @@ namespace DojoTracker.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetSoluitionById(int id, [FromQuery] int userId)
         {
-            var solutions = await _context.Solutions.Where(solution => solution.UserId == userId && solution.DojoId == id).ToListAsync();
+            var solutions = await _repository.GetSolutionsById(id, userId);
 
             return Ok(solutions);
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddSolution(Solution solution)
+        public IActionResult AddSolution(Solution solution)
         {
-            var result = await _context.Solutions.SingleOrDefaultAsync(s => s.UserId == solution.UserId && s.DojoId == solution.DojoId && s.Language == solution.Language);
-
-            if (result != null)
-            {
-                result.Code = solution.Code;
-            } else
-            {
-                _context.Solutions.Add(solution);
-            }
-
-            await _context.SaveChangesAsync();
+            _repository.AddSolution(solution);
 
             return Ok();
         }

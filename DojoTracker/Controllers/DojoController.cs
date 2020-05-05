@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using DojoTracker.Models.Repositories.Interfaces;
 
 namespace DojoTracker.Controllers
 {
@@ -13,27 +14,19 @@ namespace DojoTracker.Controllers
     [ApiController]
     public class DojoController : ControllerBase
     {
-        private readonly DojoTrackerDbContext _context;
+        private readonly IDojoRepository _repository;
 
-        public DojoController(DojoTrackerDbContext context)
+        public DojoController(IDojoRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         [HttpGet("list")]
         public async Task<IActionResult> GetDojos([FromQuery] int id)
         {
-            //TODO: Refactor: move business logic
             try
             {
-                var dojos = await _context.Dojos.OrderByDescending(d => d.Id).ToListAsync();
-                
-                List<int> solvedDojoIds = await _context.Solutions.Where(solution => solution.UserId == id).Select(solution => solution.DojoId).ToListAsync();
-                
-                foreach (var dojo in dojos.Where(dojo => solvedDojoIds.Contains(dojo.Id)))
-                {
-                    dojo.IsDone = true;
-                }
+                var dojos = await _repository.GetDojos(id);
                 
                 return Ok(dojos);
             }
@@ -45,10 +38,9 @@ namespace DojoTracker.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> AddDojo(Dojo dojo)
+        public IActionResult AddDojo(Dojo dojo)
         {
-            _context.Dojos.Add(dojo);
-            await _context.SaveChangesAsync();
+            _repository.AddDojo(dojo);
             return Ok();
         }
     }
