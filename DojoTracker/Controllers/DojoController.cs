@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DojoTracker.Services.Repositories.Interfaces;
 using Microsoft.Extensions.Logging;
 
 namespace DojoTracker.Controllers
@@ -13,27 +14,19 @@ namespace DojoTracker.Controllers
     [ApiController]
     public class DojoController : ControllerBase
     {
-        private readonly DojoTrackerDbContext _context;
+        private readonly IDojoRepository _repository;
 
-        public DojoController(DojoTrackerDbContext context)
+        public DojoController(IDojoRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         [HttpGet("list")]
-        public async Task<IActionResult> GetDojos([FromQuery] int id)
+        public async Task<IActionResult> GetDojosByUser([FromQuery] int userId)
         {
-            //TODO: Refactor: move business logic
             try
             {
-                var dojos = await _context.Dojos.OrderByDescending(d => d.Id).ToListAsync();
-                
-                List<int> solvedDojoIds = await _context.Solutions.Where(solution => solution.UserId == id).Select(solution => solution.DojoId).ToListAsync();
-                
-                foreach (var dojo in dojos.Where(dojo => solvedDojoIds.Contains(dojo.Id)))
-                {
-                    dojo.IsDone = true;
-                }
+                var dojos = await _repository.ListDojosByUserIdAsync(userId);
                 
                 return Ok(dojos);
             }
@@ -45,22 +38,23 @@ namespace DojoTracker.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetDojo(int id)
+        public async Task<IActionResult> GetDojo(int id,[FromQuery] int userId)
         {
-            var dojo = await _context.Dojos.FirstOrDefaultAsync(dojo => dojo.Id == id);
-
-            var isSolved = await _context.Solutions.FirstOrDefaultAsync(solution => solution.DojoId == id) != null;
-
-            dojo.IsDone = isSolved;
-
-            return Ok(dojo);
+            try
+            {
+                var dojo = await _repository.GetDojoByIdAsync(id, userId);
+                return Ok(dojo);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Data);
+            }
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> AddDojo(Dojo dojo)
+        public IActionResult AddDojo(Dojo dojo)
         {
-            _context.Dojos.Add(dojo);
-            await _context.SaveChangesAsync();
+            _repository.AddDojo(dojo);
             return Ok();
         }
     }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DojoTracker.Models;
+using DojoTracker.Services.Repositories;
+using DojoTracker.Services.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +29,8 @@ namespace DojoTracker
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped(typeof(ISolutionRepository), typeof(SolutionRepository));
+            services.AddScoped(typeof(IDojoRepository), typeof(DojoRepository));
             services.AddControllers();
             services.AddDbContextPool<DojoTrackerDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DojoTrackerDBConnection")));
         }
