@@ -38,11 +38,11 @@ namespace DojoTracker.Services.Repositories
                                           .ToListAsync();
         }
 
-        public async Task<IEnumerable<Solution>> GetSolutionByDojoIdAsync(int id, int userId)
-        {   
-            return await _context.Solutions.Where(solution => solution.UserId == userId &&
-                                                              solution.DojoId == id)
-                                                              .ToListAsync();
+        public async Task<Solution> GetSolutionByDojoIdAsync(int id, int userId, string language)
+        {
+            return await _context.Solutions.FirstOrDefaultAsync(solution => solution.UserId == userId &&
+                                                                            solution.DojoId == id && solution.Language == language);
+
         }
 
         private async Task<Solution> FindSolution(Solution solution)
