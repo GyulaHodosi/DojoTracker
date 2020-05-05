@@ -15,9 +15,17 @@ namespace DojoTracker.Services.Repositories
             _context = context;
         }
 
-        public Task<Dojo> GetDojoByUserIdAsync(int id)
+        public async Task<Dojo> GetDojoByIdAsync(int id, int userId)
         {
-            throw new System.NotImplementedException();
+            var dojo = await _context.Dojos.FirstOrDefaultAsync(dojo => dojo.Id == id);
+
+            var isComplete = await
+                _context.Solutions.FirstOrDefaultAsync(solution => solution.UserId == userId && solution.DojoId == id) != null;
+
+            dojo.IsDone = isComplete;
+
+            return dojo;
+
         }
 
         public void AddDojo(Dojo dojo)
@@ -26,11 +34,11 @@ namespace DojoTracker.Services.Repositories
             _context.SaveChanges();
         }
 
-        public async Task<IEnumerable<Dojo>> ListDojosByUserIdAsync(int id)
+        public async Task<IEnumerable<Dojo>> ListDojosByUserIdAsync(int userId)
         {
             var dojos = await _context.Dojos.OrderByDescending(d => d.Id).ToListAsync();
 
-            List<int> solvedDojoIds = await _context.Solutions.Where(solution => solution.UserId == id).Select(solution => solution.DojoId).ToListAsync();
+            List<int> solvedDojoIds = await _context.Solutions.Where(solution => solution.UserId == userId).Select(solution => solution.DojoId).ToListAsync();
 
             foreach (var dojo in dojos.Where(dojo => solvedDojoIds.Contains(dojo.Id)))
             {
