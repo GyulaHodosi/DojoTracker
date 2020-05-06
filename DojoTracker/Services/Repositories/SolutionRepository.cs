@@ -9,7 +9,7 @@ namespace DojoTracker.Services.Repositories
 {
     public class SolutionRepository : ISolutionRepository
     {
-        private DojoTrackerDbContext _context;
+        private readonly DojoTrackerDbContext _context;
 
         public SolutionRepository(DojoTrackerDbContext context)
         {
