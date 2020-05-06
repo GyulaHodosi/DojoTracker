@@ -1,7 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using DojoTracker.Models;
+using DojoTracker.Services.AccountManagement.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace DojoTracker.Controllers
 {
@@ -12,11 +15,13 @@ namespace DojoTracker.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly IEmailService _emailService;
 
-        public UserController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public UserController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _emailService = emailService;
         }
 
         [HttpPost("login")]
@@ -26,19 +31,14 @@ namespace DojoTracker.Controllers
 
             if (user == null)
             {
-                var newUser = new User 
-                    { UserName = gUser.Email, Email = gUser.Email, 
-                        GoogleId = gUser.GoogleId, FirstName = gUser.GivenName, 
-                        LastName = gUser.FamilyName, avatarUrl = gUser.ImageUrl};
-
-                var result = await _userManager.CreateAsync(newUser);
-
-                if (result.Succeeded)
-                {
-                    await _signInManager.SignInAsync(newUser, true);
-
-                    return Ok("yolo");
-                }
+                var confirmationLink = Url.Action("Register", 
+                    "User", new {
+                    email = gUser.Email, firstName = gUser.GivenName, 
+                    lastName = gUser.FamilyName, 
+                    imageUrl = gUser.ImageUrl, id = gUser.GoogleId},
+                    HttpContext.Request.Scheme);
+                
+                _emailService.Send("trackthatdojo@gmail.com", "new user", confirmationLink);
             }
             else
             {
@@ -48,6 +48,22 @@ namespace DojoTracker.Controllers
             }
 
             return BadRequest();
+        }
+        
+        [HttpGet("register")]
+        public async Task<IActionResult> Register(string email, string firstName, string lastName, string imageUrl, string id)
+        {
+            var newUser = new User 
+                
+            { UserName = email, Email = email, 
+                GoogleId = id, FirstName = firstName, 
+                LastName = lastName, avatarUrl = imageUrl};
+
+            var result = await _userManager.CreateAsync(newUser);
+
+            if (!result.Succeeded) return BadRequest();
+
+            return Ok("yolo");
         }
     }
 }
