@@ -10,6 +10,7 @@ namespace DojoTracker.Services.Repositories
     public class DojoRepository : IDojoRepository
     {
         private readonly DojoTrackerDbContext _context;
+        
         public DojoRepository(DojoTrackerDbContext context)
         {
             _context = context;
