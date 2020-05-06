@@ -1,12 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using DojoTracker.Models;
+using DojoTracker.Services.AccountManagement;
+using DojoTracker.Services.AccountManagement.Interfaces;
+using DojoTracker.Services.Repositories;
+using DojoTracker.Services.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,8 +26,13 @@ namespace DojoTracker
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+            services.AddScoped(typeof(ISolutionRepository), typeof(SolutionRepository));
+            services.AddScoped(typeof(IDojoRepository), typeof(DojoRepository));
+            services.AddScoped(typeof(IEmailService), typeof(EmailService));
             services.AddControllers();
             services.AddDbContextPool<DojoTrackerDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DojoTrackerDBConnection")));
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<DojoTrackerDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +50,8 @@ namespace DojoTracker
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

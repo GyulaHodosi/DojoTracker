@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using DojoTracker.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 
 namespace DojoTracker.Models
 {
-    public class DojoTrackerDbContext : DbContext
+    public class DojoTrackerDbContext : IdentityDbContext
     {
         public DojoTrackerDbContext(DbContextOptions<DojoTrackerDbContext> options)
             : base(options)
