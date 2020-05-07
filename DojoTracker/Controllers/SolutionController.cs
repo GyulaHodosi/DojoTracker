@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using DojoTracker.Models;
 using DojoTracker.Services.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace DojoTracker.Controllers
@@ -13,32 +15,41 @@ namespace DojoTracker.Controllers
     [ApiController]
     public class SolutionController : ControllerBase
     {
-        private readonly ISolutionRepository _repository; 
+        private readonly ISolutionRepository _repository;
+        private readonly UserManager<User> _userManager;
 
-        public SolutionController(ISolutionRepository repository)
+        public SolutionController(ISolutionRepository repository, UserManager<User> userManager)
         {
             _repository = repository;
+            _userManager = userManager;
         }
 
         [HttpGet("list")]
-        public async Task<IActionResult> GetSolutions([FromQuery] int id)
+        [Authorize]
+        public async Task<IActionResult> GetSolutions()
         {
-            var solutions = await _repository.ListSolutionsByUserIdAsync(id);
+            var userId = (await _userManager.GetUserAsync(User)).Id;
+            var solutions = await _repository.ListSolutionsByUserIdAsync(userId);
 
             return Ok(solutions);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetSoluitionById(int id, [FromQuery] int userId, [FromQuery] string language)
+        [Authorize]
+        public async Task<IActionResult> GetSoluitionById(int id, [FromQuery] string language)
         {
+            var userId = (await _userManager.GetUserAsync(User)).Id;
             var solution = await _repository.GetSolutionByDojoIdAsync(id, userId, language);
 
             return Ok(solution);
         }
 
         [HttpPost]
-        public IActionResult AddSolution(Solution solution)
+        [Authorize]
+        public async Task<IActionResult> AddSolution(Solution solution)
         {
+            var userId = (await _userManager.GetUserAsync(User)).Id;
+            solution.UserId = userId;
             _repository.AddSolution(solution);
 
             return Ok();
