@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using DojoTracker.Models;
 using DojoTracker.Services.AccountManagement.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -31,23 +32,36 @@ namespace DojoTracker.Controllers
 
             if (user == null)
             {
-                var confirmationLink = Url.Action("Register", 
-                    "User", new {
-                    email = gUser.Email, firstName = gUser.GivenName, 
-                    lastName = gUser.FamilyName, 
-                    imageUrl = gUser.ImageUrl, id = gUser.GoogleId},
+                var confirmationLink = Url.Action("Register",
+                    "User", new
+                    {
+                        email = gUser.Email, firstName = gUser.GivenName,
+                        lastName = gUser.FamilyName,
+                        imageUrl = gUser.ImageUrl, id = gUser.GoogleId
+                    },
                     HttpContext.Request.Scheme);
-                
+
                 _emailService.Send("trackthatdojo@gmail.com", "new user", confirmationLink);
-            }
-            else
-            {
-                await _signInManager.SignInAsync(user, true);
 
-                return Ok("swag");
+                return Ok(new {status = "newUser"});
+
             }
 
-            return BadRequest();
+            await _signInManager.SignInAsync(user, true);
+
+            return Ok(new {status ="success"});
+            
+        }
+
+        [HttpPost("logout")]
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+
+            await _signInManager.SignOutAsync();
+
+            return Ok();
+
         }
         
         [HttpGet("register")]
@@ -61,9 +75,15 @@ namespace DojoTracker.Controllers
 
             var result = await _userManager.CreateAsync(newUser);
 
+            var confirmationEmail =
+                $"Dear {firstName} {lastName},\n Your registration has been approved and you can now sign in at http://localhost:3000" +
+                "\n \n Best regards,\n The Dojo Tracker Team";
+            
+            _emailService.Send(email, "Dojo Tracker registration", confirmationEmail);
+
             if (!result.Succeeded) return BadRequest();
 
-            return Ok("yolo");
+            return Ok("Thanks for confirming this user, they can now log in.");
         }
     }
 }

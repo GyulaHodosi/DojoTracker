@@ -13,7 +13,7 @@ namespace DojoTracker.Models
         [Key]
         public int Id { get; set; }
         [ForeignKey(nameof(User))]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         [ForeignKey(nameof(Dojo))]
         public int DojoId { get; set; }
         public string Code { get; set; }

@@ -1,8 +1,10 @@
+using System;
 using DojoTracker.Models;
 using DojoTracker.Services.AccountManagement;
 using DojoTracker.Services.AccountManagement.Interfaces;
 using DojoTracker.Services.Repositories;
 using DojoTracker.Services.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -33,6 +35,18 @@ namespace DojoTracker
             services.AddControllers();
             services.AddDbContextPool<DojoTrackerDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DojoTrackerDBConnection")));
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<DojoTrackerDbContext>();
+            services.ConfigureApplicationCookie(options=>
+            {
+                options.Cookie.HttpOnly = true;
+                options.Cookie.Name = "credentials";
+                options.ExpireTimeSpan = TimeSpan.FromHours(24);
+                options.Cookie.Domain = "localhost";
+                options.LoginPath = "/login";
+                options.LogoutPath = "/logout";
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.SlidingExpiration = true;
+            });
+         
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,10 +62,10 @@ namespace DojoTracker
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            
+            app.UseAuthentication();
 
             app.UseAuthorization();
-
-            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
