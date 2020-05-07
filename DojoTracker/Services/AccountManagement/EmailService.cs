@@ -18,15 +18,14 @@ namespace DojoTracker.Services.AccountManagement
         
         public EmailService(IConfiguration configuration) 
         {
-            _smtpServer = configuration["Email:SmtpServer"];
-            _smtpPort = int.Parse(configuration["Email:SmtpPort"]);
-            _smtpPort = _smtpPort == 0 ? 25 : _smtpPort;
-            _fromAddress = configuration["Email:FromAddress"];
-            _fromAddressTitle = configuration["FromAddressTitle"];
-            _username = configuration["Email:SmtpUsername"];
-            _password = configuration["Email:SmtpPassword"];
-            _enableSsl = bool.Parse(configuration["Email:EnableSsl"]);
-            _useDefaultCredentials = bool.Parse(configuration["Email:UseDefaultCredentials"]);
+            _smtpServer = "smtp.gmail.com";
+            _smtpPort = 587;
+            _fromAddress = "trackthatdojo@gmail.com";
+            _fromAddressTitle = "trackthatdojo@gmail.com";
+            _username = "trackthatdojo@gmail.com";
+            _password = "herpderp123";
+            _enableSsl = false;
+            _useDefaultCredentials = false;
         }
         
         
