@@ -32,13 +32,13 @@ namespace DojoTracker.Services.Repositories
             _context.SaveChanges();
         }
 
-        public async Task<IEnumerable<Solution>> ListSolutionsByUserIdAsync(int id)
+        public async Task<IEnumerable<Solution>> ListSolutionsByUserIdAsync(string userId)
         {
-           return await _context.Solutions.Where(solution => solution.UserId == id)
+           return await _context.Solutions.Where(solution => solution.UserId == userId)
                                           .ToListAsync();
         }
 
-        public async Task<Solution> GetSolutionByDojoIdAsync(int id, int userId, string language)
+        public async Task<Solution> GetSolutionByDojoIdAsync(int id, string userId, string language)
         {
             return await _context.Solutions.FirstOrDefaultAsync(solution => solution.UserId == userId &&
                                                                             solution.DojoId == id && solution.Language == language);

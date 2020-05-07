@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using DojoTracker.Models;
 using DojoTracker.Services.AccountManagement.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -48,6 +49,17 @@ namespace DojoTracker.Controllers
             }
 
             return BadRequest();
+        }
+
+        [HttpPost("logout")]
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+
+            await _signInManager.SignOutAsync();
+
+            return Ok();
+
         }
         
         [HttpGet("register")]

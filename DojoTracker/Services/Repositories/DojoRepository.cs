@@ -16,7 +16,7 @@ namespace DojoTracker.Services.Repositories
             _context = context;
         }
 
-        public async Task<Dojo> GetDojoByIdAsync(int id, int userId)
+        public async Task<Dojo> GetDojoByIdAsync(int id, string userId)
         {
             var dojo = await _context.Dojos.FirstOrDefaultAsync(dojo => dojo.Id == id);
 
@@ -35,7 +35,7 @@ namespace DojoTracker.Services.Repositories
             _context.SaveChanges();
         }
 
-        public async Task<IEnumerable<Dojo>> ListDojosByUserIdAsync(int userId)
+        public async Task<IEnumerable<Dojo>> ListDojosByUserIdAsync(string userId)
         {
             var dojos = await _context.Dojos.OrderByDescending(d => d.Id).ToListAsync();
 
