@@ -35,18 +35,32 @@ namespace DojoTracker.Services.Repositories
             _context.SaveChanges();
         }
 
+        public async Task<IEnumerable<Dojo>> ListUserDojosByDojoNameAsync(string userId, string dojoTitle)
+        {
+            var dojos = await _context.Dojos.Where(dojo => dojo.Title.Contains(dojoTitle)).ToListAsync();
+            
+            await MarkDojosAsSolved(dojos, userId);
+
+            return dojos;
+        }
+
         public async Task<IEnumerable<Dojo>> ListDojosByUserIdAsync(string userId)
         {
             var dojos = await _context.Dojos.OrderByDescending(d => d.Id).ToListAsync();
 
-            List<int> solvedDojoIds = await _context.Solutions.Where(solution => solution.UserId == userId).Select(solution => solution.DojoId).ToListAsync();
+            await MarkDojosAsSolved(dojos, userId);
+
+            return dojos;
+        }
+
+        private async Task MarkDojosAsSolved(List<Dojo> dojos, string userId)
+        {
+            var solvedDojoIds = await _context.Solutions.Where(solution => solution.UserId == userId).Select(solution => solution.DojoId).ToListAsync();
 
             foreach (var dojo in dojos.Where(dojo => solvedDojoIds.Contains(dojo.Id)))
             {
                 dojo.IsDone = true;
             }
-
-            return dojos;
         }
     }
 }
