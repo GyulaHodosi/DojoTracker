@@ -44,6 +44,24 @@ namespace DojoTracker.Controllers
             }
         }
 
+        [HttpGet("search")]
+        [Authorize]
+        public async Task<IActionResult> GetUserDojosByTitle([FromQuery] string title)
+        {
+            try
+            {
+                var userId = (await _userManager.GetUserAsync(User)).Id;
+                var dojos = await _repository.ListUserDojosByDojoNameAsync(userId, title);
+                
+                return Ok(dojos);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return BadRequest();
+            }
+        }
+
         [HttpGet("{id}")]
         [Authorize]
         public async Task<IActionResult> GetDojo(int id)
