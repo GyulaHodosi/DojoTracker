@@ -39,7 +39,7 @@ namespace DojoTracker.Services.Repositories
         {
             var dojos = await _context.Dojos.Where(dojo => dojo.Title.Contains(dojoTitle)).ToListAsync();
             
-            await MarkDojosAsSolved(dojos, userId);
+            await MarkAsSolved(dojos, userId);
 
             return dojos;
         }
@@ -48,12 +48,12 @@ namespace DojoTracker.Services.Repositories
         {
             var dojos = await _context.Dojos.OrderByDescending(d => d.Id).ToListAsync();
 
-            await MarkDojosAsSolved(dojos, userId);
+            await MarkAsSolved(dojos, userId);
 
             return dojos;
         }
 
-        private async Task MarkDojosAsSolved(List<Dojo> dojos, string userId)
+        private async Task MarkAsSolved(IEnumerable<Dojo> dojos, string userId)
         {
             var solvedDojoIds = await _context.Solutions.Where(solution => solution.UserId == userId).Select(solution => solution.DojoId).ToListAsync();
 

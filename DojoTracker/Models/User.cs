@@ -4,7 +4,7 @@
 {
     public class User : IdentityUser
     {
-        public long Rank { get; set; }
+        public int Score { get; set; }
         public string GoogleId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

@@ -4,6 +4,8 @@ using DojoTracker.Services.AccountManagement;
 using DojoTracker.Services.AccountManagement.Interfaces;
 using DojoTracker.Services.Repositories;
 using DojoTracker.Services.Repositories.Interfaces;
+using DojoTracker.Services.Statistics;
+using DojoTracker.Services.Statistics.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,6 +34,7 @@ namespace DojoTracker
             services.AddScoped(typeof(ISolutionRepository), typeof(SolutionRepository));
             services.AddScoped(typeof(IDojoRepository), typeof(DojoRepository));
             services.AddScoped(typeof(IEmailService), typeof(EmailService));
+            services.AddScoped(typeof(IStatGenerator), typeof(StatGenerator));
             services.AddControllers();
             services.AddDbContextPool<DojoTrackerDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DojoTrackerDBConnection")));
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<DojoTrackerDbContext>();

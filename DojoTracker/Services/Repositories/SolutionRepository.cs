@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DojoTracker.Models;
@@ -16,8 +17,11 @@ namespace DojoTracker.Services.Repositories
             _context = context;
         }
 
-        public void AddSolution(Solution solution)
+        public void AddSolution(Solution solution, string userId)
         {
+            solution.UserId = userId;
+            solution.SubmissionDate = DateTime.Now;
+
             var result = FindSolution(solution).Result;
 
             if (result != null)
@@ -43,6 +47,18 @@ namespace DojoTracker.Services.Repositories
             return await _context.Solutions.FirstOrDefaultAsync(solution => solution.UserId == userId &&
                                                                             solution.DojoId == id && solution.Language == language);
 
+        }
+
+        public async Task<IEnumerable<int>> ListSolvedDojoIdsByUserIdAsync(string userId)
+        {
+            return await _context.Solutions.Where(solution => solution.UserId == userId)
+                .Select(solution => solution.DojoId).ToListAsync();
+        }
+
+        public async Task<DateTime> GetLastCompletedByUserIdAsync(string userId)
+        {
+            return await _context.Solutions.Where(solution => solution.UserId == userId)
+                .Select(solution => solution.SubmissionDate).MaxAsync();
         }
 
         private async Task<Solution> FindSolution(Solution solution)
