@@ -41,6 +41,7 @@ namespace DojoTracker.Services.Statistics
                 UserId = user.Id,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+                Email = user.Email,
                 LastCompleted = await GetLastCompletedAsync(user.Id),
                 Score = user.Score,
                 CompletedDojoIds = await GetSolvedDojoIdsByUserIdAsync(user.Id)
@@ -55,11 +56,6 @@ namespace DojoTracker.Services.Statistics
         private async Task<DateTime> GetLastCompletedAsync(string userId)
         {
             return await _solutions.GetLastCompletedByUserIdAsync(userId);
-        }
-
-        private async Task<User> GetUserAsync(string userId)
-        {
-            return await _userManager.FindByIdAsync(userId);
         }
     }
 }
