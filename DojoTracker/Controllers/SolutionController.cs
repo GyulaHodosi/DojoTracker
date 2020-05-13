@@ -49,7 +49,7 @@ namespace DojoTracker.Controllers
         public async Task<IActionResult> AddSolution(Solution solution)
         {
             var userId = (await _userManager.GetUserAsync(User)).Id;
-            _repository.AddSolution(solution, userId);
+            await _repository.AddSolutionAsync(solution, userId);
 
             return Ok();
         }

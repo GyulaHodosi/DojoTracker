@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DojoTracker.Models;
 using DojoTracker.Services.Repositories.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace DojoTracker.Services.Repositories
@@ -11,13 +12,15 @@ namespace DojoTracker.Services.Repositories
     public class SolutionRepository : ISolutionRepository
     {
         private readonly DojoTrackerDbContext _context;
+        private readonly UserManager<User> _userManager;
 
-        public SolutionRepository(DojoTrackerDbContext context)
+        public SolutionRepository(DojoTrackerDbContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
-        public void AddSolution(Solution solution, string userId)
+        public async Task AddSolutionAsync(Solution solution, string userId)
         {
             solution.UserId = userId;
             solution.SubmissionDate = DateTime.Now;
@@ -31,21 +34,25 @@ namespace DojoTracker.Services.Repositories
             else
             {
                 _context.Solutions.Add(solution);
+
+                var dojoScore = await GetScoreByDojoIdAsync(solution.DojoId);
+                await UpdateUserScoreOnSubmitAsync(dojoScore, userId);
             }
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Solution>> ListSolutionsByUserIdAsync(string userId)
         {
-           return await _context.Solutions.Where(solution => solution.UserId == userId)
-                                          .ToListAsync();
+            return await _context.Solutions.Where(solution => solution.UserId == userId)
+                .ToListAsync();
         }
 
         public async Task<Solution> GetSolutionByDojoIdAsync(int id, string userId, string language)
         {
             return await _context.Solutions.FirstOrDefaultAsync(solution => solution.UserId == userId &&
-                                                                            solution.DojoId == id && solution.Language == language);
+                                                                            solution.DojoId == id &&
+                                                                            solution.Language == language);
 
         }
 
@@ -63,11 +70,23 @@ namespace DojoTracker.Services.Repositories
 
         private async Task<Solution> FindSolution(Solution solution)
         {
-            Solution result = await _context.Solutions.SingleOrDefaultAsync(s => s.UserId == solution.UserId &&
-                                                                                 s.DojoId == solution.DojoId && 
-                                                                                 s.Language == solution.Language);
+            return await _context.Solutions.SingleOrDefaultAsync(s => s.UserId == solution.UserId &&
+                                                                      s.DojoId == solution.DojoId &&
+                                                                      s.Language == solution.Language);
+        }
 
-            return result;
+        private async Task UpdateUserScoreOnSubmitAsync(int score, string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+
+            user.Score += score;
+
+            await _userManager.UpdateAsync(user);
+        }
+
+        private async Task<int> GetScoreByDojoIdAsync(int dojoId)
+        {
+            return (await _context.Dojos.FirstOrDefaultAsync(dojo => dojo.Id == dojoId)).Difficulty;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace DojoTracker.Services.Repositories.Interfaces
     {
         public Task<IEnumerable<Solution>> ListSolutionsByUserIdAsync(string userId);
         public Task<Solution> GetSolutionByDojoIdAsync(int id, string userId, string language);
-        public void AddSolution(Solution solution, string userId);
+        public Task AddSolutionAsync(Solution solution, string userId);
 
         public Task<IEnumerable<int>> ListSolvedDojoIdsByUserIdAsync(string userId);
         Task<DateTime> GetLastCompletedByUserIdAsync(string userId);
