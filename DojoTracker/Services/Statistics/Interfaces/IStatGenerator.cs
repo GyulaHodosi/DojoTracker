@@ -7,5 +7,6 @@ namespace DojoTracker.Services.Statistics.Interfaces
     public interface IStatGenerator
     {
         Task<IEnumerable<UserStatistics>> ListAllUserStatisticsAsync();
+        Task<IEnumerable<DojoStatistics>> ListAllDojoStatisticsAsync();
     }
 }
