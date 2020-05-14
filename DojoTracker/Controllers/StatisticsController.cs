@@ -25,5 +25,13 @@ namespace DojoTracker.Controllers
 
             return Ok(stats);
         }
+        
+        [HttpGet("dojos")]
+        public async Task<IActionResult> GetDojoStatistics()
+        {
+            var stats = await _statGenerator.ListAllDojoStatisticsAsync();
+
+            return Ok(stats);
+        }
     }
 }
