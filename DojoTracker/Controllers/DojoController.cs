@@ -69,7 +69,7 @@ namespace DojoTracker.Controllers
             try
             {
                 var userId = (await _userManager.GetUserAsync(User)).Id;
-                var dojo = await _repository.GetDojoByIdAsync(id, userId);
+                var dojo = await _repository.GetDojoByUserIdAsync(id, userId);
                 return Ok(dojo);
             }
             catch (Exception e)
