@@ -16,7 +16,7 @@ namespace DojoTracker.Services.Repositories
             _context = context;
         }
 
-        public async Task<Dojo> GetDojoByIdAsync(int id, string userId)
+        public async Task<Dojo> GetDojoByUserIdAsync(int id, string userId)
         {
             var dojo = await _context.Dojos.FirstOrDefaultAsync(dojo => dojo.Id == id);
 
@@ -27,6 +27,11 @@ namespace DojoTracker.Services.Repositories
 
             return dojo;
 
+        }
+
+        public Task<Dojo> GetDojoByIdAsync(int dojoId)
+        {
+            return _context.Dojos.FirstOrDefaultAsync(dojo => dojo.Id == dojoId);
         }
 
         public void AddDojo(Dojo dojo)
