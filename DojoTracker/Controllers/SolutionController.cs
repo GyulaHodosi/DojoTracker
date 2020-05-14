@@ -39,7 +39,7 @@ namespace DojoTracker.Controllers
         public async Task<IActionResult> GetSoluitionById(int id, [FromQuery] string language)
         {
             var userId = (await _userManager.GetUserAsync(User)).Id;
-            var solution = await _repository.GetSolutionByDojoIdAsync(id, userId, language);
+            var solution = await _repository.GetUserSolutionByDojoIdAsync(id, userId, language);
 
             return Ok(solution);
         }
