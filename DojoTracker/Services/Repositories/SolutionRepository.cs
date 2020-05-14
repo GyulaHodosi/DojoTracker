@@ -42,13 +42,18 @@ namespace DojoTracker.Services.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public IQueryable<Solution> ListSolutionsByDojoId(int dojoId)
+        {
+            return  _context.Solutions.Where(solution => solution.DojoId == dojoId);
+        }
+
         public async Task<IEnumerable<Solution>> ListSolutionsByUserIdAsync(string userId)
         {
             return await _context.Solutions.Where(solution => solution.UserId == userId)
                 .ToListAsync();
         }
 
-        public async Task<Solution> GetSolutionByDojoIdAsync(int id, string userId, string language)
+        public async Task<Solution> GetUserSolutionByDojoIdAsync(int id, string userId, string language)
         {
             return await _context.Solutions.FirstOrDefaultAsync(solution => solution.UserId == userId &&
                                                                             solution.DojoId == id &&
@@ -59,7 +64,7 @@ namespace DojoTracker.Services.Repositories
         public async Task<IEnumerable<int>> ListSolvedDojoIdsByUserIdAsync(string userId)
         {
             return await _context.Solutions.Where(solution => solution.UserId == userId)
-                .Select(solution => solution.DojoId).ToListAsync();
+                .Select(solution => solution.DojoId).Distinct().ToListAsync();
         }
 
         public async Task<DateTime> GetLastCompletedByUserIdAsync(string userId)
@@ -67,6 +72,17 @@ namespace DojoTracker.Services.Repositories
             return await _context.Solutions.Where(solution => solution.UserId == userId)
                 .Select(solution => solution.SubmissionDate).MaxAsync();
         }
+
+        public async Task<IEnumerable<string>> ListUserIdsByDojoIdAsync(int dojoId)
+        {
+            return await ListSolutionsByDojoId(dojoId).Select(solution => solution.UserId).Distinct().ToListAsync();
+        }
+
+        public IQueryable<int> ListAllDojoIdsWithASolution()
+        {
+            return _context.Solutions.Select(solution => solution.DojoId).Distinct();
+        }
+
 
         private async Task<Solution> FindSolution(Solution solution)
         {
@@ -88,5 +104,6 @@ namespace DojoTracker.Services.Repositories
         {
             return (await _context.Dojos.FirstOrDefaultAsync(dojo => dojo.Id == dojoId)).Difficulty;
         }
+        
     }
 }
