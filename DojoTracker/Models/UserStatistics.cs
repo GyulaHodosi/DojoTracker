@@ -14,5 +14,7 @@ namespace DojoTracker.Models
         public int Score { get; set; }
         public DateTime LastCompleted { get; set; }
         
+        public int NumOfCompletedDojos { get; set; }
+        
     }
 }
