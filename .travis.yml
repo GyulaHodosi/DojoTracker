@@ -3,8 +3,9 @@ mono: none
 dotnet: 3.1
 
 script:
+    - cd DojoTracker
     - dotnet build
-    - dotnet test
+    - dotnet test 
 
 notification:
     email: adamzopcsak@gmail.com
