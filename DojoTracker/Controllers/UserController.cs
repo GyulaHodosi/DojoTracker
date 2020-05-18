@@ -17,12 +17,14 @@ namespace DojoTracker.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IEmailService _emailService;
+        private readonly IProfileManager _profileManager;
 
-        public UserController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService)
+        public UserController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService, IProfileManager profileManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailService = emailService;
+            _profileManager = profileManager;
         }
 
         [HttpPost("login")]
@@ -49,7 +51,9 @@ namespace DojoTracker.Controllers
 
             await _signInManager.SignInAsync(user, true);
 
-            return Ok(new {status ="success"});
+            var publicUser = await _profileManager.GeneratePublicProfileAsync(user);
+
+            return Ok(publicUser);
             
         }
 
@@ -84,6 +88,16 @@ namespace DojoTracker.Controllers
             if (!result.Succeeded) return BadRequest();
 
             return Ok("Thanks for confirming this user, they can now log in.");
+        }
+
+        [HttpGet("user")]
+        [Authorize]
+        public async Task<IActionResult> GetLoggedUser()
+        {
+            var user = await  _userManager.GetUserAsync(User);
+            var publicUser = await _profileManager.GeneratePublicProfileAsync(user);
+
+            return Ok(publicUser);
         }
     }
 }
