@@ -35,6 +35,7 @@ namespace DojoTracker
             services.AddScoped(typeof(IDojoRepository), typeof(DojoRepository));
             services.AddScoped(typeof(IEmailService), typeof(EmailService));
             services.AddScoped(typeof(IStatGenerator), typeof(StatGenerator));
+            services.AddScoped(typeof(IProfileManager), typeof(ProfileManager));
             services.AddControllers();
             services.AddDbContextPool<DojoTrackerDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DojoTrackerDBConnection")));
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<DojoTrackerDbContext>();
