@@ -8,4 +8,10 @@ script:
     - dotnet test 
 
 notification:
-    email: adamzopcsak@gmail.com
+    email:
+        recipients:
+            - adamzopcsak@gmail.com
+            - kgalmos@gmail.com
+            - gyula.g.hodosi@gmail.com
+        on_success: always
+        on_failure: always
