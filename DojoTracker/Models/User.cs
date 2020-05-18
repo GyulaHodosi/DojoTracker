@@ -9,5 +9,11 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string avatarUrl { get; set; }
+        
+        public string PreferredLanguage { get; set; }
+        
+        public string PreferredEditorTheme { get; set; }
+        
+        public string NickName { get; set; }
     }
 }
