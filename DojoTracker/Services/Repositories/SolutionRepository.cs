@@ -69,8 +69,9 @@ namespace DojoTracker.Services.Repositories
 
         public async Task<DateTime> GetLastCompletedByUserIdAsync(string userId)
         {
-            return await _context.Solutions.Where(solution => solution.UserId == userId)
-                .Select(solution => solution.SubmissionDate).MaxAsync();
+            var solutions = await ListSolutionsByUserIdAsync(userId);
+
+            return solutions.Select(solution => solution.SubmissionDate).DefaultIfEmpty().Max();
         }
 
         public async Task<IEnumerable<string>> ListUserIdsByDojoIdAsync(int dojoId)
