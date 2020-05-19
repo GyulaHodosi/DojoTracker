@@ -3,7 +3,7 @@ using DojoTracker.Models;
 
 namespace DojoTracker.Services.AccountManagement.Interfaces
 {
-    public interface IProfileManager
+    public interface IAccountManager
     {
         Task<PublicUserData> GeneratePublicProfileAsync(User user);
     }

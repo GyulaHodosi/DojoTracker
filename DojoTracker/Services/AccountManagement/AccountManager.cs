@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Identity;
 
 namespace DojoTracker.Services.AccountManagement
 {
-    public class ProfileManager : IProfileManager
+    public class AccountManager : IAccountManager
     {
 
         private readonly UserManager<User> _userManager;
 
-        public ProfileManager(UserManager<User> userManager)
+        public AccountManager(UserManager<User> userManager)
         {
             _userManager = userManager;
         }
