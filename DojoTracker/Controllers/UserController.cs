@@ -92,7 +92,7 @@ namespace DojoTracker.Controllers
 
         [HttpGet("user")]
         [Authorize]
-        public async Task<IActionResult> GetLoggedUser()
+        public async Task<IActionResult> GetCurrentUser()
         {
             var user = await  _userManager.GetUserAsync(User);
             var publicUser = await _accountManager.GeneratePublicProfileAsync(user);
