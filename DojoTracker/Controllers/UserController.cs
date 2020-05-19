@@ -17,14 +17,14 @@ namespace DojoTracker.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IEmailService _emailService;
-        private readonly IProfileManager _profileManager;
+        private readonly IAccountManager _accountManager;
 
-        public UserController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService, IProfileManager profileManager)
+        public UserController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService, IAccountManager accountManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailService = emailService;
-            _profileManager = profileManager;
+            _accountManager = accountManager;
         }
 
         [HttpPost("login")]
@@ -51,7 +51,7 @@ namespace DojoTracker.Controllers
 
             await _signInManager.SignInAsync(user, true);
 
-            var publicUser = await _profileManager.GeneratePublicProfileAsync(user);
+            var publicUser = await _accountManager.GeneratePublicProfileAsync(user);
 
             return Ok(publicUser);
             
@@ -95,7 +95,7 @@ namespace DojoTracker.Controllers
         public async Task<IActionResult> GetLoggedUser()
         {
             var user = await  _userManager.GetUserAsync(User);
-            var publicUser = await _profileManager.GeneratePublicProfileAsync(user);
+            var publicUser = await _accountManager.GeneratePublicProfileAsync(user);
 
             return Ok(publicUser);
         }
