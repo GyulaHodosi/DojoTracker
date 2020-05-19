@@ -18,7 +18,7 @@ namespace DojoTracker.Controllers
         }
 
         [HttpGet("users")]
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> GetUserStatistics()
         {
             var stats = await _statGenerator.ListAllUserStatisticsAsync();
@@ -27,6 +27,7 @@ namespace DojoTracker.Controllers
         }
         
         [HttpGet("dojos")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> GetDojoStatistics()
         {
             var stats = await _statGenerator.ListAllDojoStatisticsAsync();
