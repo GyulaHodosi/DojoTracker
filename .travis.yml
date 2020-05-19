@@ -7,7 +7,7 @@ services:
 
 script:
     - docker build -t adamzopcsak/dojotrackerbe .
-    - docker login --username $DOCKER_USERNAME --password-stdin $DOCKER_PASSWORD
+    - docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
     - docker push adamzopcsak/dojotrackerbe
 
 notification:
