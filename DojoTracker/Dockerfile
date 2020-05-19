@@ -3,7 +3,7 @@ WORKDIR /source
 COPY . .
 
 RUN ls
-RUN dotnet restore
+RUN dotnet restore DojoTracker.csproj
 RUN dotnet add package Microsoft.EntityFrameworkCore.Analyzers --version 3.1.3
 RUN dotnet publish -c release -o /app --no-restore
 RUN dotnet test
