@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /source
-COPY . .
+COPY . ./
 
 WORKDIR /source/dojoTrackerBE/DojoTracker
 RUN dotnet restore
