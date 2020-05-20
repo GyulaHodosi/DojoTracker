@@ -29,5 +29,18 @@ namespace DojoTracker.Services.AccountManagement
                 PreferredEditorTheme = user.PreferredEditorTheme
             };
         }
+
+        public async Task AssignRoles(User user)
+        {
+            if (IsEligibleForAdminRights(user.Email))
+            {
+                await _userManager.AddToRoleAsync(user, "Administrator");
+            }
+        }
+
+        private bool IsEligibleForAdminRights(string email)
+        {
+            return email.Contains("@codecool.com") || email == "trackthatdojo@gmail.com";
+        }
     }
 }
