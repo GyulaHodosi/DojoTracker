@@ -17,12 +17,14 @@ namespace DojoTracker.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IEmailService _emailService;
+        private readonly IAccountManager _accountManager;
 
-        public UserController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService)
+        public UserController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService, IAccountManager accountManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailService = emailService;
+            _accountManager = accountManager;
         }
 
         [HttpPost("login")]
@@ -41,7 +43,12 @@ namespace DojoTracker.Controllers
                     },
                     HttpContext.Request.Scheme);
 
-                _emailService.Send("trackthatdojo@gmail.com", "new user", confirmationLink);
+                var mailbody = "<p>A new user would like to register:<p>" +
+                               $"<p>Name: {gUser.GivenName} {gUser.FamilyName}</p>"+
+                               $"<p>Email: {gUser.Email}</p>"+
+                               $"<p><a href='{confirmationLink}'>Confirm user</a></p>";
+
+                _emailService.Send("trackthatdojo@gmail.com", "new user", mailbody);
 
                 return Ok(new {status = "newUser"});
 
@@ -49,7 +56,9 @@ namespace DojoTracker.Controllers
 
             await _signInManager.SignInAsync(user, true);
 
-            return Ok(new {status ="success"});
+            var publicUser = await _accountManager.GeneratePublicProfileAsync(user);
+
+            return Ok(publicUser);
             
         }
 
@@ -75,15 +84,29 @@ namespace DojoTracker.Controllers
 
             var result = await _userManager.CreateAsync(newUser);
 
+            var user = await _userManager.FindByEmailAsync(email);
+
+            await _accountManager.AssignRoles(user);
+
             var confirmationEmail =
-                $"Dear {firstName} {lastName},\n Your registration has been approved and you can now sign in at http://localhost:3000" +
-                "\n \n Best regards,\n The Dojo Tracker Team";
+                $"<p>Dear {firstName} {lastName},</p> <p> Your registration has been approved and you can now sign in at <a href='http://localhost:3000'>Dojo Tracker</a></p>" +
+                "<p>Best regards,</p> <p> The Dojo Tracker Team</p>";
             
             _emailService.Send(email, "Dojo Tracker registration", confirmationEmail);
 
             if (!result.Succeeded) return BadRequest();
 
             return Ok("Thanks for confirming this user, they can now log in.");
+        }
+
+        [HttpGet("user")]
+        [Authorize]
+        public async Task<IActionResult> GetCurrentUser()
+        {
+            var user = await  _userManager.GetUserAsync(User);
+            var publicUser = await _accountManager.GeneratePublicProfileAsync(user);
+
+            return Ok(publicUser);
         }
     }
 }
