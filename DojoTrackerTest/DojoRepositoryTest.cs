@@ -22,9 +22,8 @@ namespace TestDojoTracker
         }
 
         [Test]
-        public void GetDojoByIdAsyncShouldReturnDojo()
+        public void GetDojoByIdAsync_ValidId_ReturnsDojo()
         {
-            
             //Arrange
             _context.Dojos.Add(new Dojo() { Id = 1, Title = "TestDojo" });
             //Act
@@ -34,7 +33,7 @@ namespace TestDojoTracker
             Assert.AreEqual(result.Title, "TestDojo");
         }
         [Test]
-        public void GetDojoByIdAsyncShouldReturnNull()
+        public void GetDojoByIdAsync_InvalidId_ReturnsNull()
         {
             //Arrange
             _context.Dojos.Remove(_context.Dojos.FirstOrDefault(dojo => dojo.Id == 3));

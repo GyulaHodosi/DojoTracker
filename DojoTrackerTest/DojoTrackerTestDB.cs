@@ -6,7 +6,7 @@ namespace TestDojoTracker
 {
     class DojoTrackerTestDB : IDisposable
     {
-        public readonly DojoTrackerDbContext _context;
+        internal readonly DojoTrackerDbContext _context;
 
         public DojoTrackerTestDB()
         {
