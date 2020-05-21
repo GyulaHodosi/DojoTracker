@@ -1,0 +1,9 @@
+diff a/DojoTracker/appsettings.json b/DojoTracker/appsettings.json	(rejected hunks)
+@@ -8,6 +8,6 @@
+   },
+     "AllowedHosts": "*",
+     "ConnectionStrings": {
+-        "DojoTrackerDBConnection": "server=dtdatabase,1433;Database=DojoTrackerDB;User=SA;Password=Pwd12345!"
++        "DojoTrackerDBConnection": "server=(localdb)\\MSSQLLocalDB;database=DojoTrackerDB;Trusted_Connection=true"
+     }
+ }

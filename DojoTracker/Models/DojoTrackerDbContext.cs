@@ -21,7 +21,6 @@ namespace DojoTracker.Models
         }
 
         public DbSet<Dojo> Dojos { get; set; }
-        public DbSet<User> Users { get; set; }
         public DbSet<Solution> Solutions { get; set; }
 
     }
