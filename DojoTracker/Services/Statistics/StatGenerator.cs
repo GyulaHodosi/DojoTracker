@@ -63,7 +63,7 @@ namespace DojoTracker.Services.Statistics
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
-                LastCompleted = await GetLastCompletedAsync(user.Id),
+                LastCompleted = completedDojoIds.Count == 0 ? null : (DateTime?) await GetLastCompletedAsync(user.Id),
                 Score = user.Score,
                 CompletedDojoIds = completedDojoIds,
                 NumOfCompletedDojos = completedDojoIds.Count

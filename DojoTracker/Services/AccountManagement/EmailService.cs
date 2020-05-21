@@ -36,7 +36,7 @@ namespace DojoTracker.Services.AccountManagement
             mimeMessage.From.Add(new MailboxAddress(_fromAddressTitle, _fromAddress));
             mimeMessage.To.Add(new MailboxAddress(toAddress));
             mimeMessage.Subject = subject;
-            var bodyBuilder = new MimeKit.BodyBuilder
+            var bodyBuilder = new BodyBuilder
             {
                 HtmlBody = body
             };
@@ -59,5 +59,7 @@ namespace DojoTracker.Services.AccountManagement
                 client.Disconnect(true);
             }
         }
+        
+        
     }
 }

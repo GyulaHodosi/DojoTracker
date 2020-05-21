@@ -27,6 +27,7 @@ namespace DojoTracker.Controllers
         }
         
         [HttpGet("dojos")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> GetDojoStatistics()
         {
             var stats = await _statGenerator.ListAllDojoStatisticsAsync();

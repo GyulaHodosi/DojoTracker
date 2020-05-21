@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 
@@ -18,6 +19,8 @@ namespace DojoTracker.Models
             modelBuilder.Entity<Dojo>().HasData(DojoList.Dojos);
             modelBuilder.Entity<User>().Property(user => user.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Solution>().Property(solution => solution.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
+                {Name = "Administrator", NormalizedName = "Administrator".ToUpper()});
         }
 
         public DbSet<Dojo> Dojos { get; set; }
