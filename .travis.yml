@@ -16,5 +16,5 @@ notification:
             - adamzopcsak@gmail.com
             - kgalmos@gmail.com
             - gyula.g.hodosi@gmail.com
-        on_success: always
+        on_success: never
         on_failure: always
