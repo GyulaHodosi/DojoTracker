@@ -61,7 +61,7 @@ namespace DojoTracker
                 app.UseDeveloperExceptionPage();
             }
             
-            app.UseCors(options => options.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+            app.UseCors(options => options.WithOrigins("https://dojotracker.herokuapp.com").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
             app.UseHttpsRedirection();
 
