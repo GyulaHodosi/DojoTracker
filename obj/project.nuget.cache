@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "e4FTHhzpoW9FpsJwS5p7XCLnAjSZXNah4n/s40tWm0JGl2fBUDdbumODRgQou8bJ+AIq75r/jkFXwjKSaX6NCA==",
+  "dgSpecHash": "4r6K/NZZAEhRBk0Dt8ZRPCVn7iPCPxi2MDx9qxXxGCsBaxZSoHBvsmMdzHYFKYbAaZ/+hODQeIwNiOazOQ2YsQ==",
   "success": true,
-  "projectFilePath": "D:\\Codecool\\testAutomation\\dojoTrackerHeroku\\dojoTrackerBE\\DojoTracker\\DojoTracker.csproj",
+  "projectFilePath": "D:\\Codecool\\testAutomation\\dojoTrackerHeroku\\track-that-dojo\\DojoTracker.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\adamz\\.nuget\\packages\\mailkit\\2.0.1\\mailkit.2.0.1.nupkg.sha512",
     "C:\\Users\\adamz\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.3\\microsoft.aspnetcore.cryptography.internal.3.1.3.nupkg.sha512",
@@ -41,6 +41,8 @@
     "C:\\Users\\adamz\\.nuget\\packages\\mimekit\\2.0.1\\mimekit.2.0.1.nupkg.sha512",
     "C:\\Users\\adamz\\.nuget\\packages\\netcore.mailkit\\2.0.2\\netcore.mailkit.2.0.2.nupkg.sha512",
     "C:\\Users\\adamz\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
+    "C:\\Users\\adamz\\.nuget\\packages\\npgsql\\4.1.3\\npgsql.4.1.3.nupkg.sha512",
+    "C:\\Users\\adamz\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\3.1.3\\npgsql.entityframeworkcore.postgresql.3.1.3.nupkg.sha512",
     "C:\\Users\\adamz\\.nuget\\packages\\portable.bouncycastle\\1.8.1.3\\portable.bouncycastle.1.8.1.3.nupkg.sha512",
     "C:\\Users\\adamz\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\adamz\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
@@ -109,7 +111,7 @@
     "C:\\Users\\adamz\\.nuget\\packages\\system.resources.resourcemanager\\4.3.0\\system.resources.resourcemanager.4.3.0.nupkg.sha512",
     "C:\\Users\\adamz\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512",
     "C:\\Users\\adamz\\.nuget\\packages\\system.runtime.caching\\4.5.0\\system.runtime.caching.4.5.0.nupkg.sha512",
-    "C:\\Users\\adamz\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.0\\system.runtime.compilerservices.unsafe.4.5.0.nupkg.sha512",
+    "C:\\Users\\adamz\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512",
     "C:\\Users\\adamz\\.nuget\\packages\\system.runtime.extensions\\4.3.0\\system.runtime.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\adamz\\.nuget\\packages\\system.runtime.handles\\4.3.0\\system.runtime.handles.4.3.0.nupkg.sha512",
     "C:\\Users\\adamz\\.nuget\\packages\\system.runtime.interopservices\\4.3.0\\system.runtime.interopservices.4.3.0.nupkg.sha512",
