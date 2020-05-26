@@ -173,3 +173,7 @@ D:\Codecool\testAutomation\dojoTrackerHeroku\track-that-dojo\obj\Debug\netcoreap
 D:\Codecool\testAutomation\dojoTrackerHeroku\track-that-dojo\obj\Debug\netcoreapp3.1\DojoTracker.dll
 D:\Codecool\testAutomation\dojoTrackerHeroku\track-that-dojo\obj\Debug\netcoreapp3.1\DojoTracker.pdb
 D:\Codecool\testAutomation\dojoTrackerHeroku\track-that-dojo\obj\Debug\netcoreapp3.1\DojoTracker.genruntimeconfig.cache
+D:\Codecool\testAutomation\dojoTrackerHeroku\track-that-dojo\bin\Debug\netcoreapp3.1\Npgsql.dll
+D:\Codecool\testAutomation\dojoTrackerHeroku\track-that-dojo\bin\Debug\netcoreapp3.1\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\Codecool\testAutomation\dojoTrackerHeroku\track-that-dojo\obj\Debug\netcoreapp3.1\DojoTracker.csproj.CoreCompileInputs.cache
+D:\Codecool\testAutomation\dojoTrackerHeroku\track-that-dojo\obj\Debug\netcoreapp3.1\DojoTracker.MvcApplicationPartsAssemblyInfo.cache
