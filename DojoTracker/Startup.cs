@@ -37,7 +37,7 @@ namespace DojoTracker
             services.AddScoped(typeof(IStatGenerator), typeof(StatGenerator));
             services.AddScoped(typeof(IAccountManager), typeof(AccountManager));
             services.AddControllers();
-            services.AddDbContextPool<DojoTrackerDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DtPostgresConn")));
+            services.AddDbContextPool<DojoTrackerDbContext>(option => { option.UseNpgsql(Environment.GetEnvironmentVariable("CONNECTION_STRING")); });
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<DojoTrackerDbContext>();
             services.ConfigureApplicationCookie(options=>
             {
