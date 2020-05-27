@@ -35,7 +35,7 @@ const LogOut = (props: Props) => {
                         Log out
                     </EmptyButton>
                 )}
-                onLogoutSuccess={() => {logout()}}
+                onLogoutSuccess={logout}
                 onFailure={() => history.push("/error")}
             />
         </div>
