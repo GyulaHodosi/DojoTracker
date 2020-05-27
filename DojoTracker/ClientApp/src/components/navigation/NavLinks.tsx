@@ -51,7 +51,7 @@ const NavLinks = () => {
             <p>
                 <CustomLink to="/ranking">Ranking</CustomLink>
             </p>
-            <p>Profile</p>
+            <p onClick={() => {window.open("https://www.youtube.com/watch?v=DKP16d_WdZM", "_blank")}}>Profile</p>
         </StyledNavLinks>
     );
 };
