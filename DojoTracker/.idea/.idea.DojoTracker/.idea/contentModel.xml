@@ -360,7 +360,6 @@
           </e>
         </e>
       </e>
-      <e p="package.json" t="Include" />
       <e p="TestDojoTracker.csproj" t="IncludeRecursive" />
     </e>
   </component>
