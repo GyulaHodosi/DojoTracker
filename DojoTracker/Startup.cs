@@ -61,11 +61,7 @@ namespace DojoTracker
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (!env.IsDevelopment())
-            {
-                app.UseSpaStaticFiles();
-            }
-            
+
             app.UseCors(options => options.WithOrigins("https://dojotracker.herokuapp.com", "http://dojotracker.herokuapp.com").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
             app.UseRouting();
@@ -78,6 +74,8 @@ namespace DojoTracker
             {
                 endpoints.MapControllers();
             });
+            
+            app.UseSpaStaticFiles();
             
             app.UseSpa(spa =>
             {
