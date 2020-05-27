@@ -70,11 +70,6 @@ namespace DojoTracker
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-            
             app.UseSpaStaticFiles();
             
             app.UseSpa(spa =>
@@ -85,6 +80,11 @@ namespace DojoTracker
                 {
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
+            });
+            
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
             });
         }
     }
