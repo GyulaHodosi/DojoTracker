@@ -44,7 +44,7 @@ namespace DojoTracker
                 options.Cookie.HttpOnly = true;
                 options.Cookie.Name = "credentials";
                 options.ExpireTimeSpan = TimeSpan.FromHours(24);
-                options.Cookie.Domain = "localhost";
+                /*options.Cookie.Domain = "localhost"; */
                 options.LoginPath = "/login";
                 options.LogoutPath = "/logout";
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;

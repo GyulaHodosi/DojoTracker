@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\kgalm\.nuget\packages\microsoft.net.test.sdk\16.4.0\build\netcoreapp2.1" t="Include">
+      <e p="Microsoft.NET.Test.Sdk.Program.cs" t="Include" />
+    </e>
+    <e p="C:\Users\kgalm\.nuget\packages\microsoft.testplatform.testhost\16.4.0\build\netcoreapp2.1\x64\testhost.dll" t="Include" />
+    <e p="C:\Users\kgalm\.nuget\packages\microsoft.testplatform.testhost\16.4.0\build\netcoreapp2.1\x64\testhost.exe" t="Include" />
+    <e p="C:\Users\kgalm\.nuget\packages\nunit3testadapter\3.15.1\build\netcoreapp2.0\nunit.engine.api.dll" t="Include" />
+    <e p="C:\Users\kgalm\.nuget\packages\nunit3testadapter\3.15.1\build\netcoreapp2.0\nunit.engine.dll" t="Include" />
+    <e p="C:\Users\kgalm\.nuget\packages\nunit3testadapter\3.15.1\build\netcoreapp2.0\NUnit3.TestAdapter.dll" t="Include" />
+    <e p="C:\Users\kgalm\.nuget\packages\nunit3testadapter\3.15.1\build\netcoreapp2.0\NUnit3.TestAdapter.pdb" t="Include" />
+    <e p="C:\Users\kgalm\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\kgalm\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_DojoTracker.-1319974358.00" t="ExcludeRecursive" />
+    <e p="D:\Code\C#\dojoTrackerBE\DojoTracker" t="IncludeRecursive">
+      <e p="appsettings.Development.json" t="Include" />
+      <e p="appsettings.json" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="Controllers" t="Include">
+        <e p="DojoController.cs" t="Include" />
+        <e p="SolutionController.cs" t="Include" />
+        <e p="StatisticsController.cs" t="Include" />
+        <e p="UserController.cs" t="Include" />
+      </e>
+      <e p="DojoTracker.csproj" t="IncludeRecursive" />
+      <e p="DojoTracker.sln" t="IncludeFlat" />
+      <e p="Migrations" t="Include">
+        <e p="20200506094534_IdentityInitial.cs" t="Include" />
+        <e p="20200506094534_IdentityInitial.Designer.cs" t="Include" />
+        <e p="20200519073252_NewUserFields.cs" t="Include" />
+        <e p="20200519073252_NewUserFields.Designer.cs" t="Include" />
+        <e p="DojoTrackerDbContextModelSnapshot.cs" t="Include" />
+      </e>
+      <e p="Models" t="Include">
+        <e p="Dojo.cs" t="Include" />
+        <e p="DojoList.cs" t="Include" />
+        <e p="DojoStatistics.cs" t="Include" />
+        <e p="DojoTrackerDbContext.cs" t="Include" />
+        <e p="GoogleUser.cs" t="Include" />
+        <e p="PublicUserData.cs" t="Include" />
+        <e p="Solution.cs" t="Include" />
+        <e p="User.cs" t="Include" />
+        <e p="UserStatistics.cs" t="Include" />
+      </e>
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp3.1" t="Include">
+            <e p="DojoTracker.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Program.cs" t="Include" />
+      <e p="Properties" t="Include">
+        <e p="launchSettings.json" t="Include" />
+      </e>
+      <e p="Services" t="Include">
+        <e p="AccountManagement" t="Include">
+          <e p="AccountManager.cs" t="Include" />
+          <e p="EmailService.cs" t="Include" />
+          <e p="Interfaces" t="Include">
+            <e p="IAccountManager.cs" t="Include" />
+            <e p="IEmailService.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Repositories" t="Include">
+          <e p="DojoRepository.cs" t="Include" />
+          <e p="Interfaces" t="Include">
+            <e p="IDojoRepository.cs" t="Include" />
+            <e p="ISolutionRepository.cs" t="Include" />
+          </e>
+          <e p="SolutionRepository.cs" t="Include" />
+        </e>
+        <e p="Statistics" t="Include">
+          <e p="Interfaces" t="Include">
+            <e p="IStatGenerator.cs" t="Include" />
+          </e>
+          <e p="StatGenerator.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Startup.cs" t="Include" />
+      <e p="wwwroot" t="Include">
+        <e p="android-chrome-192x192.png" t="Include" />
+        <e p="android-chrome-512x512.png" t="Include" />
+        <e p="apple-touch-icon-114x114.png" t="Include" />
+        <e p="apple-touch-icon-120x120.png" t="Include" />
+        <e p="apple-touch-icon-144x144.png" t="Include" />
+        <e p="apple-touch-icon-152x152.png" t="Include" />
+        <e p="apple-touch-icon-180x180.png" t="Include" />
+        <e p="apple-touch-icon-57x57.png" t="Include" />
+        <e p="apple-touch-icon-60x60.png" t="Include" />
+        <e p="apple-touch-icon-72x72.png" t="Include" />
+        <e p="apple-touch-icon-76x76.png" t="Include" />
+        <e p="apple-touch-icon.png" t="Include" />
+        <e p="asset-manifest.json" t="Include" />
+        <e p="browserconfig.xml" t="Include" />
+        <e p="favicon-16x16.png" t="Include" />
+        <e p="favicon-32x32.png" t="Include" />
+        <e p="favicon.ico" t="Include" />
+        <e p="index.html" t="Include" />
+        <e p="mstile-144x144.png" t="Include" />
+        <e p="mstile-150x150.png" t="Include" />
+        <e p="mstile-310x150.png" t="Include" />
+        <e p="mstile-310x310.png" t="Include" />
+        <e p="mstile-70x70.png" t="Include" />
+        <e p="precache-manifest.7edbdad2a57fe04be69915938498a712.js" t="Include" />
+        <e p="safari-pinned-tab.svg" t="Include" />
+        <e p="service-worker.js" t="Include" />
+        <e p="site.webmanifest" t="Include" />
+        <e p="static" t="Include">
+          <e p="css" t="Include">
+            <e p="main.33ea559d.chunk.css" t="Include" />
+            <e p="main.33ea559d.chunk.css.map" t="Include" />
+          </e>
+          <e p="js" t="Include">
+            <e p="2.f8d39dd6.chunk.js" t="Include" />
+            <e p="2.f8d39dd6.chunk.js.LICENSE.txt" t="Include" />
+            <e p="2.f8d39dd6.chunk.js.map" t="Include" />
+            <e p="main.851d42c7.chunk.js" t="Include" />
+            <e p="main.851d42c7.chunk.js.map" t="Include" />
+            <e p="runtime-main.64def3ff.js" t="Include" />
+            <e p="runtime-main.64def3ff.js.map" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+    <e p="D:\Code\C#\dojoTrackerBE\DojoTrackerTest" t="IncludeRecursive">
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="DummyTest.cs" t="Include" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp3.1" t="Include">
+            <e p="TestDojoTracker.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="TestDojoTracker.csproj" t="IncludeRecursive" />
+    </e>
+  </component>
+</project>
