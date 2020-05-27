@@ -27,18 +27,16 @@ const errorHandler = (error) => {
         if (error.response) {
             if (error.response.status === 500) {
                 console.log(error);
-
-                customHistory.push("/error");
             }
             // The request was made and the server responded with a status code
             // that falls out of the range of 2xx
         } else if (error.request) {
-            customHistory.push("/error");
+            console.log(error)
             // The request was made but no response was received
             // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
             // http.ClientRequest in node.js
         } else {
-            customHistory.push("/error");
+            console.log(error)
         }
     }
     return Promise.reject({ ...error });

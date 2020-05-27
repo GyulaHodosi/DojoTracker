@@ -1,6 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
-import { Router } from "react-router";
+import {BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
 import Navbar from "./components/navigation/Navbar";
 import DojoContextProvider from "./components/context/DojoContextProvider";
@@ -28,10 +27,9 @@ import RankingPage from "./components/ranking/RankingPage";
 import RankingContextProvider from "./components/context/RankingContextProvider";
 
 function App() {
-    setup.setupInterceptors();
 
     return (
-        <Router history={customHistory}>
+        <Router>
             <LoginContextProvider>
                 <UserDataContextProvider>
                     <SearchContextProvider>
@@ -65,8 +63,6 @@ function App() {
                                     <Route exact path="/register" component={NewUser} />
                                     <Route exact path="/login" component={LoginRedirect} />
                                     <Route exact path="/noaccess" component={NoAccess} />
-                                    <Route exact path="/error" component={UnexpectedError} />
-                                    <Route component={NoPageFound} />
                                 </Switch>
                             </SolutionContextProvider>
                         </DojoContextProvider>
