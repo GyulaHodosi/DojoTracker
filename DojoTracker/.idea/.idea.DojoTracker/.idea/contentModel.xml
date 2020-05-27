@@ -317,8 +317,6 @@
           </e>
         </e>
       </e>
-      <e p="package-lock.json" t="Include" />
-      <e p="package.json" t="Include" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="Program.cs" t="Include" />
       <e p="Properties" t="Include">
