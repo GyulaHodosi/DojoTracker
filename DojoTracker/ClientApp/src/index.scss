@@ -1,5 +1,20 @@
 @import url("https://fonts.googleapis.com/css?family=Karla:400,700&display=swap");
 
+
+@mixin vertical-align($position) {
+    position: $position;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+@mixin all-transition($time) {
+    transition: all $time;
+    -webkit-transition: all $time;
+}
+
+
 body {
     font-family: "Karla", sans-serif;
     font-size: 1em;
@@ -18,6 +33,76 @@ body {
     -ms-user-select: none;
     user-select: none;
 }
+
+.menu {
+
+    font-weight: 100;
+    background: #efefef;
+    width: 8%;
+    height: 100%;
+    padding-right: 50px;
+    position: fixed;
+    z-index: 100;
+    -webkit-box-shadow: -3px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: -3px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    left: -130px;
+    @include all-transition(0.3s);
+    color: #222;
+
+    &:hover,
+    &:focus {
+        transform: translate3d(130px, 0, 0);
+        animation-timing-function: 1s ease-in;
+    }
+
+    .title {
+        top: 48% !important;
+        @include vertical-align(absolute);
+        transform: rotate(-270deg);
+        left: 75%;
+        font-weight: 800;
+        font-size: 1.5rem;
+        color: #dc3545
+    }
+
+    .nav {
+        @include vertical-align(absolute);
+        font-weight: 100;
+
+        li {
+            padding-bottom: 30px;
+            list-style-type: none;
+
+            a {
+                display: block;
+                text-decoration: none;
+                color: inherit;
+                @include all-transition(0.3s);
+
+                &:hover {
+                    color: #aaa;
+                }
+            }
+        }
+
+
+    }
+
+
+}
+
+.intro {
+    position: absolute;
+    top: 30%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    font-size: 45px;
+    text-align: center;
+    font-style: italic;
+
+}
+
 
 img {
     user-select: none;
