@@ -38,7 +38,7 @@ namespace DojoTracker
             services.AddScoped(typeof(IStatGenerator), typeof(StatGenerator));
             services.AddScoped(typeof(IAccountManager), typeof(AccountManager));
             services.AddControllers();
-            services.AddDbContextPool<DojoTrackerDbContext>(option => { option.UseNpgsql(Environment.GetEnvironmentVariable("CONNECTION_STRING")); });
+            services.AddDbContextPool<DojoTrackerDbContext>(option => { option.UseNpgsql(Configuration.GetConnectionString("DojoTrackerDBConnection")); });
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<DojoTrackerDbContext>();
             services.ConfigureApplicationCookie(options=>
             {
@@ -62,7 +62,7 @@ namespace DojoTracker
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
-            app.UseCors(options => options.WithOrigins("https://dojotracker.herokuapp.com", "http://dojotracker.herokuapp.com").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+            app.UseCors(options => options.WithOrigins("https://dojotracker.herokuapp.com", "http://dojotracker.herokuapp.com", "http://localhost:3000").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
             app.UseRouting();
             
@@ -72,6 +72,7 @@ namespace DojoTracker
 
             app.UseSpaStaticFiles();
             
+            /*
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
@@ -81,6 +82,7 @@ namespace DojoTracker
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+            */
             
             app.UseEndpoints(endpoints =>
             {

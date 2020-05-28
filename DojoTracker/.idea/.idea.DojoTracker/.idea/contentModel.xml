@@ -10,8 +10,8 @@
     <e p="C:\Users\kgalm\.nuget\packages\nunit3testadapter\3.15.1\build\netcoreapp2.0\nunit.engine.dll" t="Include" />
     <e p="C:\Users\kgalm\.nuget\packages\nunit3testadapter\3.15.1\build\netcoreapp2.0\NUnit3.TestAdapter.dll" t="Include" />
     <e p="C:\Users\kgalm\.nuget\packages\nunit3testadapter\3.15.1\build\netcoreapp2.0\NUnit3.TestAdapter.pdb" t="Include" />
-    <e p="C:\Users\kgalm\.Rider2019.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\kgalm\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_DojoTracker.-1319974358.00" t="ExcludeRecursive" />
+    <e p="C:\Users\kgalm\AppData\local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\kgalm\AppData\local\JetBrains\Rider2020.1\resharper-host\local\Transient\ReSharperHost\v201\SolutionCaches\_DojoTracker.-1319974358.00" t="ExcludeRecursive" />
     <e p="D:\Code\C#\dojoTrackerBE\DojoTracker" t="IncludeRecursive">
       <e p="appsettings.Development.json" t="Include" />
       <e p="appsettings.json" t="Include" />
@@ -350,10 +350,8 @@
       <e p="DojoTracker.csproj" t="IncludeRecursive" />
       <e p="DojoTracker.sln" t="IncludeFlat" />
       <e p="Migrations" t="Include">
-        <e p="20200506094534_IdentityInitial.cs" t="Include" />
-        <e p="20200506094534_IdentityInitial.Designer.cs" t="Include" />
-        <e p="20200519073252_NewUserFields.cs" t="Include" />
-        <e p="20200519073252_NewUserFields.Designer.cs" t="Include" />
+        <e p="20200528091711_Initial.cs" t="Include" />
+        <e p="20200528091711_Initial.Designer.cs" t="Include" />
         <e p="DojoTrackerDbContextModelSnapshot.cs" t="Include" />
       </e>
       <e p="Models" t="Include">

@@ -14,7 +14,8 @@
       "launchBrowser": false,
       "launchUrl": "/",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "CONNECTION_STRING": "Server=localhost;Port=5432;Database=DojoTrackerPSQL;User Id=postgres;Password=Ascalon199;"
       }
     },
     "DojoTracker": {
@@ -23,7 +24,8 @@
       "launchUrl": "/",
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "CONNECTION_STRING": "Host=localhost;Database=DojoTrackerPSQL;Username=postgres;Password=Ascalon199;"
       }
     }
   }
