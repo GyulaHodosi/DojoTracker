@@ -6,13 +6,6 @@ services:
     - docker
 
 script:
-    - cd DojoTracker/ClientApp
-    - docker build -t adamzopcsak/dojotrackerfe .
-    - echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-    - docker push adamzopcsak/dojotrackerfe
-    - cd ..
-    - cd ..
-
     - docker build -t adamzopcsak/dojotrackerbe .
     - docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
     - docker push adamzopcsak/dojotrackerbe

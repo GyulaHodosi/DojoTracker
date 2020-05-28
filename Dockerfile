@@ -1,3 +1,12 @@
+FROM node:10 AS frontend
+
+WORKDIR '/app'
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm test -- --watchAll=false
+CMD ["npm", "start"]
+
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /source
 COPY . .
