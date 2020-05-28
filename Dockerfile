@@ -1,7 +1,7 @@
 FROM node:10 AS frontend
 
 WORKDIR '/app'
-COPY package*.json ./
+COPY DojoTracker/ClientApp/package*.json ./
 RUN npm install
 COPY . .
 RUN npm test -- --watchAll=false
