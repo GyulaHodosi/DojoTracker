@@ -64,6 +64,7 @@ const AddDojo = (props: Props) => {
     return (
         <CenteredContainer>
             <StyledForm>
+                <h1>Add dojo</h1>
                 <input
                     placeholder="Enter title"
                     onChange={(event) => setTitle(event.target.value)}
