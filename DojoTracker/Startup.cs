@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -44,11 +45,15 @@ namespace DojoTracker
                 options.Cookie.HttpOnly = true;
                 options.Cookie.Name = "credentials";
                 options.ExpireTimeSpan = TimeSpan.FromHours(24);
-                options.Cookie.Domain = "localhost";
+                /*options.Cookie.Domain = "localhost"; */
                 options.LoginPath = "/login";
                 options.LogoutPath = "/logout";
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
                 options.SlidingExpiration = true;
+            });
+            
+            services.AddSpaStaticFiles(configuration => {
+                configuration.RootPath = "ClientApp/build";
             });
          
         }
@@ -56,14 +61,8 @@ namespace DojoTracker
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            
-            app.UseCors(options => options.WithOrigins("https://dojotracker.herokuapp.com").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
-            app.UseHttpsRedirection();
+            app.UseCors(options => options.WithOrigins("https://dojotracker.herokuapp.com", "http://dojotracker.herokuapp.com").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
             app.UseRouting();
             
@@ -71,6 +70,18 @@ namespace DojoTracker
 
             app.UseAuthorization();
 
+            app.UseSpaStaticFiles();
+            
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "ClientApp";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseReactDevelopmentServer(npmScript: "start");
+                }
+            });
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
