@@ -34,7 +34,6 @@ const StyledEditorWrapper = styled.div`
 
 interface Props {
     isComplete: boolean;
-    markAsComplete: Function;
 }
 
 const SolutionEditor = (props: Props) => {
