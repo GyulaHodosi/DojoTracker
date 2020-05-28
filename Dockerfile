@@ -1,12 +1,3 @@
-FROM node:10 AS frontend
-
-WORKDIR '/app'
-COPY DojoTracker/ClientApp/package*.json ./
-RUN npm install
-COPY DojoTracker/ClientApp/. .
-RUN npm test -- --watchAll=false
-CMD ["npm", "start"]
-
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /source
 COPY . .
@@ -14,6 +5,7 @@ COPY . .
 WORKDIR /source/DojoTracker
 RUN dotnet restore DojoTracker.csproj
 RUN dotnet add package Microsoft.EntityFrameworkCore.Analyzers --version 3.1.3
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 RUN dotnet publish -c release -o /app --no-restore DojoTracker.csproj
 WORKDIR /source/DojoTrackerTest
 RUN dotnet test
