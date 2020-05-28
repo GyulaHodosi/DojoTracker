@@ -6,6 +6,13 @@ services:
     - docker
 
 script:
+    - cd DojoTracker/ClientApp
+    - docker build -t adamzopcsak/dojotrackerfe .
+    - echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
+    - docker push adamzopcsak/dojotrackerfe
+    - cd ..
+    - cd ..
+
     - docker build -t adamzopcsak/dojotrackerbe .
     - docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
     - docker push adamzopcsak/dojotrackerbe
@@ -13,8 +20,8 @@ script:
 notification:
     email:
         recipients:
-            - adamzopcsak@gmail.com
-            - kgalmos@gmail.com
-            - gyula.g.hodosi@gmail.com
-        on_success: always
+            - $DEVELOPER_EMAIL_1
+            - $DEVELOPER_EMAIL_2
+            - $DEVELOPER_EMAIL_3
+        on_success: never
         on_failure: always
