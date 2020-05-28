@@ -1,3 +1,5 @@
+FROM node:14 AS nodepack
+
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /source
 COPY . .
@@ -5,8 +7,7 @@ COPY . .
 WORKDIR /source/DojoTracker
 RUN dotnet restore DojoTracker.csproj
 RUN dotnet add package Microsoft.EntityFrameworkCore.Analyzers --version 3.1.3
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-RUN export NVM_DIR="$HOME/.nvm"
+COPY --from=nodepack . .
 RUN dotnet publish -c release -o /app --no-restore DojoTracker.csproj
 WORKDIR /source/DojoTrackerTest
 RUN dotnet test
