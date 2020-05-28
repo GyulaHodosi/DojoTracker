@@ -89,7 +89,7 @@ namespace DojoTracker.Controllers
             await _accountManager.AssignRoles(user);
 
             var confirmationEmail =
-                $"<p>Dear {firstName} {lastName},</p> <p> Your registration has been approved and you can now sign in at <a href='http://localhost:3000'>Dojo Tracker</a></p>" +
+                $"<p>Dear {firstName} {lastName},</p> <p> Your registration has been approved and you can now sign in at <a href='https://track-that-dojo.herokuapp.com'>Dojo Tracker</a></p>" +
                 "<p>Best regards,</p> <p> The Dojo Tracker Team</p>";
             
             _emailService.Send(email, "Dojo Tracker registration", confirmationEmail);
