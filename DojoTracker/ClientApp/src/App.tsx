@@ -15,7 +15,7 @@ import NoPageFound from "./components/error/NoPageFound";
 import LoginRedirect from "./components/user-management/LoginRedirect";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import UserStatContextProvider from "./components/context/UserStatContextProvider";
-import AdminPage from "./components/admin/AdminPage";
+import AdminStatisticsPage from "./components/admin/statistics/AdminStatisticsPage";
 import DojoStatContextProvider from "./components/context/DojoStatContextProvider";
 import UnexpectedError from "./components/error/UnexpectedError";
 import { setup } from "./static/util/axiosConfig";
@@ -23,9 +23,10 @@ import customHistory from "./static/util/customHistory";
 import UserDataContextProvider from "./components/context/UserDataContextProvider";
 import AdminRoute from "./components/routing/AdminRoute";
 import NoAccess from "./components/error/NoAccess";
-import AdminPageLink from "./components/admin/AdminPageLink";
 import RankingPage from "./components/ranking/RankingPage";
 import RankingContextProvider from "./components/context/RankingContextProvider";
+import AdminMenu from "./components/admin/AdminMenu";
+import AddDojo from "./components/admin/dojo/AddDojo";
 
 function App() {
     setup.setupInterceptors();
@@ -37,7 +38,7 @@ function App() {
                     <SearchContextProvider>
                         <DojoContextProvider>
                             <Navbar />
-                            <AdminPageLink />
+                            <AdminMenu />
                             <SolutionContextProvider>
                                 <Switch>
                                     <PrivateRoute exact path="/dojos">
@@ -54,12 +55,15 @@ function App() {
                                             <RankingPage />
                                         </RankingContextProvider>
                                     </PrivateRoute>
-                                    <AdminRoute exact path="/admin">
+                                    <AdminRoute exact path="/admin/statistics">
                                         <UserStatContextProvider>
                                             <DojoStatContextProvider>
-                                                <AdminPage />
+                                                <AdminStatisticsPage />
                                             </DojoStatContextProvider>
                                         </UserStatContextProvider>
+                                    </AdminRoute>
+                                    <AdminRoute exact path="/admin/new-dojo">
+                                        <AddDojo />
                                     </AdminRoute>
                                     <Route exact path="/" component={LandingPage} />
                                     <Route exact path="/register" component={NewUser} />

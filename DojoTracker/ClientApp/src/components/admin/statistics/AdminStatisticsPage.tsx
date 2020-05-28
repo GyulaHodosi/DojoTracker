@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "../styled-components/Reusables";
+import { Container } from "../../styled-components/Reusables";
 import styled from "styled-components";
 import UserStatsContainer from "./UserStatsContainer";
 import DojoStatContainer from "./DojoStatContainer";
@@ -22,7 +22,7 @@ const CustomContainer = styled(Container)`
 
 interface Props {}
 
-const AdminPage = (props: Props) => {
+const AdminStatisticsPage = (props: Props) => {
     return (
         <CustomContainer>
             <UserStatsContainer />
@@ -31,4 +31,4 @@ const AdminPage = (props: Props) => {
     );
 };
 
-export default AdminPage;
+export default AdminStatisticsPage;

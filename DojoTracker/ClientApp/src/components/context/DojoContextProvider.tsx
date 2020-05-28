@@ -12,6 +12,7 @@ interface ContextStateProp {
     getById: Function;
     listSearch: Function;
     getTitleById: Function;
+    addDojo: Function;
 }
 
 export const DojoContext = createContext<ContextStateProp>({} as ContextStateProp);
@@ -58,8 +59,14 @@ const DojoContextProvider = ({ children }: { children: ReactNode }) => {
         return dojo.title;
     };
 
+    const addDojo = (dojo: IBasicDojoInfo) => {
+        axios.post(`/api/dojo/add`, dojo).then((response: AxiosResponse<any>) => {
+            history.push("/newDojo");
+        });
+    };
+
     return (
-        <DojoContext.Provider value={{ dojos, setDojos, getById, listSearch, getTitleById }}>
+        <DojoContext.Provider value={{ dojos, setDojos, getById, listSearch, getTitleById, addDojo }}>
             {children}
         </DojoContext.Provider>
     );

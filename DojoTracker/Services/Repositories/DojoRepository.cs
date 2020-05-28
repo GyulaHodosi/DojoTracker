@@ -34,10 +34,13 @@ namespace DojoTracker.Services.Repositories
             return _context.Dojos.FirstOrDefaultAsync(dojo => dojo.Id == dojoId);
         }
 
-        public void AddDojo(Dojo dojo)
+        public async Task AddDojo(Dojo dojo)
         {
-            _context.Dojos.Add(dojo);
-            _context.SaveChanges();
+            var latestId = await _context.Dojos.Select(d => d.Id).MaxAsync();
+            dojo.Id = latestId + 1;
+            
+            await _context.Dojos.AddAsync(dojo);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Dojo>> ListUserDojosByDojoNameAsync(string userId, string dojoTitle)

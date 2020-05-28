@@ -1,5 +1,5 @@
 import React from "react";
-import { HeaderTile } from "../styled-components/Reusables";
+import { HeaderTile } from "../../styled-components/Reusables";
 
 const DojoTableHeader = ({ onClick }: { onClick: Function }) => {
     return (

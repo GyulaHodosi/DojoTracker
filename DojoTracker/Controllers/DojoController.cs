@@ -79,9 +79,9 @@ namespace DojoTracker.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult AddDojo(Dojo dojo)
+        public async Task<IActionResult> AddDojo(Dojo dojo)
         {
-            _repository.AddDojo(dojo);
+            await _repository.AddDojo(dojo);
             return Ok();
         }
     }

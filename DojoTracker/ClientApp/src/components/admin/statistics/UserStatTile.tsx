@@ -1,6 +1,6 @@
 import React from "react";
-import { IUserStatistics } from "../../static/util/interfaces";
-import { DataTile } from "../styled-components/Reusables";
+import { IUserStatistics } from "../../../static/util/interfaces";
+import { DataTile } from "../../styled-components/Reusables";
 
 const UserStatTile = ({ userStats }: { userStats: IUserStatistics }) => {
     const date = userStats.lastCompleted;

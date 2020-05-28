@@ -1,7 +1,7 @@
 import React from "react";
-import { IDojoStatistics } from "../../static/util/interfaces";
-import { DataTile } from "../styled-components/Reusables";
-import { convertRatioToPercent, capitalize } from "../../static/util/calc";
+import { IDojoStatistics } from "../../../static/util/interfaces";
+import { DataTile } from "../../styled-components/Reusables";
+import { convertRatioToPercent, capitalize } from "../../../static/util/calc";
 
 const DojoStatTile = ({ dojoStats }: { dojoStats: IDojoStatistics }) => {
     const leastsolvedPerc = convertRatioToPercent(Object.values(dojoStats.leastFrequentlySolvedInLanguage)[0]);
