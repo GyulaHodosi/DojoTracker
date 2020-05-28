@@ -27,6 +27,7 @@ import RankingPage from "./components/ranking/RankingPage";
 import RankingContextProvider from "./components/context/RankingContextProvider";
 import AdminMenu from "./components/admin/AdminMenu";
 import AddDojo from "./components/admin/dojo/AddDojo";
+import AddSucess from "./components/admin/dojo/AddSucess";
 
 function App() {
     setup.setupInterceptors();
@@ -64,6 +65,9 @@ function App() {
                                     </AdminRoute>
                                     <AdminRoute exact path="/admin/new-dojo">
                                         <AddDojo />
+                                    </AdminRoute>
+                                    <AdminRoute exact path="/newDojo">
+                                        <AddSucess />
                                     </AdminRoute>
                                     <Route exact path="/" component={LandingPage} />
                                     <Route exact path="/register" component={NewUser} />
