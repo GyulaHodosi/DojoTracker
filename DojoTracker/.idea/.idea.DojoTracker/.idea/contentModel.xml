@@ -245,6 +245,7 @@
               <e p="AdminPageLink.tsx" t="Include" />
               <e p="dojo" t="Include">
                 <e p="AddDojo.tsx" t="Include" />
+                <e p="AddSucess.tsx" t="Include" />
               </e>
               <e p="Statistics" t="Include">
                 <e p="AdminStatisticsPage.tsx" t="Include" />
