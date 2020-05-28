@@ -3,7 +3,7 @@ FROM node:10 AS frontend
 WORKDIR '/app'
 COPY DojoTracker/ClientApp/package*.json ./
 RUN npm install
-COPY . .
+COPY DojoTracker/CliantApp/. .
 RUN npm test -- --watchAll=false
 CMD ["npm", "start"]
 
