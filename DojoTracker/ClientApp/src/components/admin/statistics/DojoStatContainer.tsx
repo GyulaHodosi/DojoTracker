@@ -1,9 +1,9 @@
 import React, { useContext, Fragment } from "react";
-import { ContainerWithRows } from "../styled-components/Reusables";
-import { IDojoStatistics } from "../../static/util/interfaces";
+import { ContainerWithRows } from "../../styled-components/Reusables";
+import { IDojoStatistics } from "../../../static/util/interfaces";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
-import { DojoStatContext } from "../context/DojoStatContextProvider";
+import { DojoStatContext } from "../../context/DojoStatContextProvider";
 import DojoStatTile from "./DojoStatTile";
 import DojoTableHeader from "./DojoTableHeader";
 

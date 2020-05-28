@@ -1,8 +1,8 @@
 import React, { useContext, Fragment } from "react";
-import { ContainerWithRows } from "../styled-components/Reusables";
-import { IUserStatistics } from "../../static/util/interfaces";
+import { ContainerWithRows } from "../../styled-components/Reusables";
+import { IUserStatistics } from "../../../static/util/interfaces";
 import UserStatTile from "./UserStatTile";
-import { UserStatContext } from "../context/UserStatContextProvider";
+import { UserStatContext } from "../../context/UserStatContextProvider";
 import UserTableHeader from "./UserTableHeader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
