@@ -16,13 +16,9 @@ const Solution = ({ dojo }: { dojo: IBasicDojoInfo }) => {
     const history = useHistory();
     const { postSolution } = useContext(SolutionContext);
 
-    const markAsComplte = () => {
-        dojo.isDone = true;
-        history.push(`/dojos/${dojo.id}/sucess`);
-    };
-
     const saveSolution = () => {
         postSolution();
+        dojo.isDone = true;
         history.push(`/dojos/${dojo.id}/sucess`);
     };
 
@@ -30,7 +26,7 @@ const Solution = ({ dojo }: { dojo: IBasicDojoInfo }) => {
         <CustomContainer>
             <h3>{dojo.title}</h3>
             <EditorImputs />
-            <SolutionEditor isComplete={dojo.isDone} markAsComplete={markAsComplte} />
+            <SolutionEditor isComplete={dojo.isDone} />
             <ActionButtons link={dojo.url} onSave={saveSolution} />
         </CustomContainer>
     );
