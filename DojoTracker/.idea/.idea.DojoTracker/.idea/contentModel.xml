@@ -241,14 +241,21 @@
           <e p="App.tsx" t="Include" />
           <e p="components" t="Include">
             <e p="admin" t="Include">
-              <e p="AdminPage.tsx" t="Include" />
+              <e p="AdminMenu.tsx" t="Include" />
               <e p="AdminPageLink.tsx" t="Include" />
-              <e p="DojoStatContainer.tsx" t="Include" />
-              <e p="DojoStatTile.tsx" t="Include" />
-              <e p="DojoTableHeader.tsx" t="Include" />
-              <e p="UserStatsContainer.tsx" t="Include" />
-              <e p="UserStatTile.tsx" t="Include" />
-              <e p="UserTableHeader.tsx" t="Include" />
+              <e p="dojo" t="Include">
+                <e p="AddDojo.tsx" t="Include" />
+              </e>
+              <e p="Statistics" t="Include">
+                <e p="AdminStatisticsPage.tsx" t="Include" />
+                <e p="DojoStatContainer.tsx" t="Include" />
+                <e p="DojoStatTile copy.tsx" t="Include" />
+                <e p="DojoStatTile.tsx" t="Include" />
+                <e p="DojoTableHeader.tsx" t="Include" />
+                <e p="UserStatsContainer.tsx" t="Include" />
+                <e p="UserStatTile.tsx" t="Include" />
+                <e p="UserTableHeader.tsx" t="Include" />
+              </e>
             </e>
             <e p="context" t="Include">
               <e p="DojoContextProvider.tsx" t="Include" />
@@ -349,11 +356,6 @@
       </e>
       <e p="DojoTracker.csproj" t="IncludeRecursive" />
       <e p="DojoTracker.sln" t="IncludeFlat" />
-      <e p="Migrations" t="Include">
-        <e p="20200528091711_Initial.cs" t="Include" />
-        <e p="20200528091711_Initial.Designer.cs" t="Include" />
-        <e p="DojoTrackerDbContextModelSnapshot.cs" t="Include" />
-      </e>
       <e p="Models" t="Include">
         <e p="Dojo.cs" t="Include" />
         <e p="DojoList.cs" t="Include" />

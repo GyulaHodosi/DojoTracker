@@ -10,7 +10,7 @@ namespace DojoTracker.Services.Repositories.Interfaces
         Task<IEnumerable<Dojo>> ListDojosByUserIdAsync(string userId);
         Task<Dojo> GetDojoByUserIdAsync(int id, string userId);
         Task<Dojo> GetDojoByIdAsync(int dojoId);
-        void AddDojo(Dojo dojo);
+        Task AddDojo(Dojo dojo);
         Task<IEnumerable<Dojo>> ListUserDojosByDojoNameAsync(string userId, string dojoTitle);
     }
 }
