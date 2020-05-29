@@ -28,6 +28,7 @@ import RankingContextProvider from "./components/context/RankingContextProvider"
 import AdminMenu from "./components/admin/AdminMenu";
 import AddDojo from "./components/admin/dojo/AddDojo";
 import AddSucess from "./components/admin/dojo/AddSucess";
+import MobileNav from "./components/navigation/MobileNav";
 
 function App() {
     setup.setupInterceptors();
@@ -39,6 +40,7 @@ function App() {
                     <SearchContextProvider>
                         <DojoContextProvider>
                             <Navbar />
+                            <MobileNav />
                             <AdminMenu />
                             <SolutionContextProvider>
                                 <Switch>
