@@ -15,6 +15,7 @@ const StyledSearchBar = styled.div`
     background: white;
     border-style: solid;
     position: relative;
+    font-weight: bold;
 
     &:focus-within {
         background-color: white;
@@ -22,11 +23,6 @@ const StyledSearchBar = styled.div`
         & > button {
             color: rgb(244, 67, 72);
         }
-    }
-
-    @media screen and (max-width: 768px) {
-        width: 100%;
-        padding: 0.2rem;
     }
 `;
 

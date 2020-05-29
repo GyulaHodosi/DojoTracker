@@ -286,8 +286,10 @@
             <e p="navigation" t="Include">
               <e p="HomeLink.tsx" t="Include" />
               <e p="Logo.tsx" t="Include" />
+              <e p="MobileNav.tsx" t="Include" />
               <e p="Navbar.tsx" t="Include" />
               <e p="NavLinks.tsx" t="Include" />
+              <e p="SandwichMenu.tsx" t="Include" />
             </e>
             <e p="ranking" t="Include">
               <e p="RankingContainer.tsx" t="Include" />
@@ -313,6 +315,7 @@
               <e p="SolutionEditor.tsx" t="Include" />
             </e>
             <e p="styled-components" t="Include">
+              <e p="BurgerMenu.tsx" t="Include" />
               <e p="CustomCheckBox.tsx" t="Include" />
               <e p="Reusables.tsx" t="Include" />
             </e>

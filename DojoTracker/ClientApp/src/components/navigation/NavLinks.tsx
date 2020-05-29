@@ -1,14 +1,27 @@
 import React from "react";
 import styled from "styled-components";
 import { CustomLink } from "../styled-components/Reusables";
+import LogOut from "../user-management/LogOut";
 
-const StyledNavLinks = styled.div`
+interface StyleProps {
+    mobile: boolean;
+}
+
+const StyledNavLinks = styled.ul`
     text-align: center;
+    list-style: none;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: ${(props: StyleProps) => (props.mobile ? "column" : "row")};
 
     & p {
-        float: left;
-        margin: 0 0.5rem;
-        padding: 0 0.5rem;
+        float: ${(props: StyleProps) => (props.mobile ? "" : "left")};
+        margin: ${(props: StyleProps) => (props.mobile ? "1rem 0" : "0 0.5rem")};
+        padding: ${(props: StyleProps) => (props.mobile ? "0.5rem 0" : "0 0.5rem")};
         letter-spacing: 0.2rem;
         position: relative;
         font-size: 0.9rem;
@@ -38,20 +51,30 @@ const StyledNavLinks = styled.div`
     }
 
     @media (max-width: 1280px) {
-        display: none;
+        display: ${(props: StyleProps) => (props.mobile ? "" : "none")};
     }
 `;
 
-const NavLinks = () => {
+interface Props {
+    mobile: boolean;
+}
+
+const NavLinks = (props: Props) => {
     return (
-        <StyledNavLinks>
+        <StyledNavLinks mobile={props.mobile}>
             <p>
                 <CustomLink to="/dojos">Dojos</CustomLink>
             </p>
             <p>
                 <CustomLink to="/ranking">Ranking</CustomLink>
             </p>
-            <p onClick={() => {window.open("https://www.youtube.com/watch?v=DKP16d_WdZM", "_blank")}}>Profile</p>
+            <p
+                onClick={() => {
+                    window.open("https://www.youtube.com/watch?v=DKP16d_WdZM", "_blank");
+                }}
+            >
+                Profile
+            </p>
         </StyledNavLinks>
     );
 };
