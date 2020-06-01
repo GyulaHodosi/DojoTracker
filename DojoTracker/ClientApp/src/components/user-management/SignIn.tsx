@@ -60,7 +60,7 @@ const SignIn = (props: Props) => {
                 cookiePolicy={"single_host_origin"}
                 onSuccess={responseGoogle}
                 isSignedIn={true}
-                onFailure={() => history.push("/error")}
+                onFailure={() => {}}
                 uxMode="popup"
             />
         </div>
