@@ -70,7 +70,7 @@ const Navbar = (props: Props) => {
             <HomeLink />
             {isLoggedIn ? (
                 <Fragment>
-                    <NavLinks mobile={false} /> {isSearchVisible() && <DojoSearchContainer />}
+                    <NavLinks mobile={false} /> {isSearchVisible() && <DojoSearchContainer mobile={false} />}
                     <div className="std-log">
                         <LogOut />
                     </div>
