@@ -108,5 +108,14 @@ namespace DojoTracker.Controllers
 
             return Ok(publicUser);
         }
+
+        [HttpGet("user/{id}")]
+        public async Task<IActionResult> GetUserById(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            var publicUser = await _accountManager.GeneratePublicProfileAsync(user);
+
+            return Ok(publicUser);
+        }
     }
 }

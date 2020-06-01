@@ -4,13 +4,12 @@ import { Router } from "react-router";
 import LandingPage from "./components/LandingPage";
 import Navbar from "./components/navigation/Navbar";
 import DojoContextProvider from "./components/context/DojoContextProvider";
-import SolutionContainer from "./components/solution/SolutionContainer";
+import SolutionContainer from "./components/solution/self/SolutionContainer";
 import DojoList from "./components/dojos/DojoList";
-import SolutionContextProvider from "./components/context/SolutionContextProvider";
 import LoginContextProvider from "./components/context/LoginContextProvider";
 import NewUser from "./components/user-management/NewUser";
 import SearchContextProvider from "./components/context/SearchContextProvider";
-import PostSucess from "./components/solution/PostSucess";
+import PostSucess from "./components/solution/self/PostSucess";
 import NoPageFound from "./components/error/NoPageFound";
 import LoginRedirect from "./components/user-management/LoginRedirect";
 import PrivateRoute from "./components/routing/PrivateRoute";
@@ -28,6 +27,10 @@ import RankingContextProvider from "./components/context/RankingContextProvider"
 import AdminMenu from "./components/admin/AdminMenu";
 import AddDojo from "./components/admin/dojo/AddDojo";
 import AddSucess from "./components/admin/dojo/AddSucess";
+import MobileNav from "./components/navigation/MobileNav";
+import SolutionEditorContextProvider from "./components/context/SolutionEditorContextProvider";
+import SolutionContextProvider from "./components/context/SolutionContextProvider";
+import SolutionsContainer from "./components/solution/other_users/SolutionsContainer";
 
 function App() {
     setup.setupInterceptors();
@@ -39,8 +42,9 @@ function App() {
                     <SearchContextProvider>
                         <DojoContextProvider>
                             <Navbar />
+                            <MobileNav />
                             <AdminMenu />
-                            <SolutionContextProvider>
+                            <SolutionEditorContextProvider>
                                 <Switch>
                                     <PrivateRoute exact path="/dojos">
                                         <DojoList />
@@ -55,6 +59,11 @@ function App() {
                                         <RankingContextProvider>
                                             <RankingPage />
                                         </RankingContextProvider>
+                                    </PrivateRoute>
+                                    <PrivateRoute exact path="/solutions/:id">
+                                        <SolutionContextProvider>
+                                            <SolutionsContainer />
+                                        </SolutionContextProvider>
                                     </PrivateRoute>
                                     <AdminRoute exact path="/admin/statistics">
                                         <UserStatContextProvider>
@@ -76,7 +85,7 @@ function App() {
                                     <Route exact path="error" component={UnexpectedError} />
                                     <Route component={NoPageFound} />
                                 </Switch>
-                            </SolutionContextProvider>
+                            </SolutionEditorContextProvider>
                         </DojoContextProvider>
                     </SearchContextProvider>
                 </UserDataContextProvider>

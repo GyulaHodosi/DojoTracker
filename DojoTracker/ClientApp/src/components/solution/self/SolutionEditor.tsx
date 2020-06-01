@@ -9,7 +9,7 @@ import "ace-builds/src-noconflict/mode-python";
 
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/theme-github";
-import { SolutionContext } from "../context/SolutionContextProvider";
+import { SolutionEditorContext } from "../../context/SolutionEditorContextProvider";
 
 const StyledEditorWrapper = styled.div`
     display: flex;
@@ -37,7 +37,7 @@ interface Props {
 }
 
 const SolutionEditor = (props: Props) => {
-    const { solution, language, theme, updateSolution } = useContext(SolutionContext);
+    const { solution, language, theme, updateSolution } = useContext(SolutionEditorContext);
 
     const changeTextInEditor = (newValue: string) => {
         updateSolution(newValue);

@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Container, EmptyButton } from "../styled-components/Reusables";
-import { DojoContext } from "../context/DojoContextProvider";
+import { Container, EmptyButton } from "../../styled-components/Reusables";
+import { DojoContext } from "../../context/DojoContextProvider";
 import { useParams, useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { SolutionContext } from "../context/SolutionContextProvider";
+import { SolutionEditorContext } from "../../context/SolutionEditorContextProvider";
 
 const SuccessContainer = styled(Container)`
     text-align: center;
@@ -19,7 +19,7 @@ const SuccessContainer = styled(Container)`
 `;
 
 const PostSucess = () => {
-    const { language } = useContext(SolutionContext);
+    const { language } = useContext(SolutionEditorContext);
 
     const { id } = useParams();
 

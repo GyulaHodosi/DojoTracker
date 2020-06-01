@@ -16,6 +16,8 @@ const StyledForm = styled.div`
         height: 20%;
         padding: 1rem;
         margin: 1rem;
+        border-radius: 5px;
+        color: gray;
     }
 
     & .select {

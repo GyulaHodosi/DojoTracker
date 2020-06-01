@@ -9,6 +9,7 @@ import { LoginContext } from "../context/LoginContextProvider";
 import DojoSearchContainer from "../dojos/DojoSearchContainer";
 
 import { useLocation } from "react-router-dom";
+import SandwichMenu from "./SandwichMenu";
 
 const StyledNavBar = styled.nav`
     width: 90%;
@@ -17,7 +18,7 @@ const StyledNavBar = styled.nav`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 1;
+    z-index: 900;
     color: black;
     font-weight: bold;
     position: sticky;
@@ -28,6 +29,12 @@ const StyledNavBar = styled.nav`
 
     & * {
         margin: 0 0.5rem;
+    }
+
+    & div.std-log {
+        @media (max-width: 1280px) {
+            display: none;
+        }
     }
 `;
 
@@ -63,12 +70,17 @@ const Navbar = (props: Props) => {
             <HomeLink />
             {isLoggedIn ? (
                 <Fragment>
-                    <NavLinks /> {isSearchVisible() && <DojoSearchContainer />}
-                    <LogOut />
+                    <NavLinks mobile={false} /> {isSearchVisible() && <DojoSearchContainer mobile={false} />}
+                    <div className="std-log">
+                        <LogOut />
+                    </div>
                 </Fragment>
             ) : (
-                <SignIn />
+                <div className="std-log">
+                    <SignIn />
+                </div>
             )}
+            <SandwichMenu />
         </StyledNavBar>
     );
 };

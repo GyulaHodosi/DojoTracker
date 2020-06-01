@@ -14,13 +14,11 @@ namespace DojoTracker.Models
         [Key]
         public int Id { get; set; }
         [ForeignKey(nameof(User))]
-        [JsonIgnore]
         public string UserId { get; set; }
         [ForeignKey(nameof(Dojo))]
         public int DojoId { get; set; }
         public string Code { get; set; }
         public string Language { get; set; }
-        [JsonIgnore]
         public DateTime SubmissionDate { get; set; }
     }
 }
