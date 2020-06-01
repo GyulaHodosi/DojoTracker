@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { CustomLink } from "../styled-components/Reusables";
-import LogOut from "../user-management/LogOut";
 
 interface StyleProps {
     mobile: boolean;
