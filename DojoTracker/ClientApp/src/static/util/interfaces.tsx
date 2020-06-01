@@ -16,10 +16,12 @@ export interface IBasicUserInfo {
 }
 
 export interface IDojoSolution {
+    id: number;
     userId: number;
     dojoId: number;
     code: string;
     language: string;
+    submissionDate: any;
 }
 
 export interface IUserStatistics {
