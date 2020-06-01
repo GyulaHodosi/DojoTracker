@@ -4,9 +4,13 @@ import { LoginContext } from "../context/LoginContextProvider";
 import NavLinks from "./NavLinks";
 import LogOut from "../user-management/LogOut";
 import SignIn from "../user-management/SignIn";
+import DojoSearchContainer from "../dojos/DojoSearchContainer";
 
 const StyledMobileNav = styled.nav`
     position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     top: 0;
     right: 0;
     bottom: 0;
@@ -15,12 +19,8 @@ const StyledMobileNav = styled.nav`
     background-color: #fff;
     opacity: 0;
     pointer-events: none;
-    display: flex;
-    flex-direction: column;
     width: 100%;
     height: 100%;
-    justify-content: center;
-    align-items: center;
 
     &.is-visible {
         opacity: 1 !important;
@@ -28,12 +28,16 @@ const StyledMobileNav = styled.nav`
         pointer-events: all;
     }
 
-    @media (min-width: 1280px) {
-        display: none;
+    ul {
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
     }
 
-    & button {
-        margin: 1rem;
+    @media (min-width: 1280px) {
+        display: none;
     }
 `;
 
@@ -42,29 +46,39 @@ interface Props {}
 const MobileNav = (props: Props) => {
     const { isLoggedIn } = useContext(LoginContext);
 
-    const hideMenu = () => {
-        document.querySelector(".mobile-nav")?.classList.toggle("is-visible");
-        document.querySelector(".burger-menu")?.classList.toggle("is-opened");
+    const hideMenu = (event: any) => {
+        if (isSearchToggled(event.target)) {
+            document.querySelector(".mobile-nav")?.classList.toggle("is-visible");
+            document.querySelector(".burger-menu")?.classList.toggle("is-opened");
+        }
+
+        return;
+    };
+
+    const isSearchToggled = (target: any): boolean => {
+        return (
+            !target.classList.contains("search-bar") ||
+            (target.classList.contains("search-bar") && target.classList.contains("search-btn"))
+        );
     };
 
     return (
-        <StyledMobileNav className="mobile-nav" onClick={() => hideMenu()}>
-            <nav>
-                <ul>
-                    {isLoggedIn ? (
-                        <Fragment>
-                            <NavLinks mobile={true} />
-                            <div className="std-log">
-                                <LogOut />
-                            </div>
-                        </Fragment>
-                    ) : (
+        <StyledMobileNav className="mobile-nav" onClick={(event) => hideMenu(event)}>
+            <ul>
+                {isLoggedIn ? (
+                    <Fragment>
+                        <DojoSearchContainer mobile={true} />
+                        <NavLinks mobile={true} />
                         <div className="std-log">
-                            <SignIn />
+                            <LogOut />
                         </div>
-                    )}
-                </ul>
-            </nav>
+                    </Fragment>
+                ) : (
+                    <div className="std-log">
+                        <SignIn />
+                    </div>
+                )}
+            </ul>
         </StyledMobileNav>
     );
 };
