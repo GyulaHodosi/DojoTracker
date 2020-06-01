@@ -1,6 +1,6 @@
 import React, { useContext, Fragment } from "react";
 import styled from "styled-components";
-import { SolutionContext } from "../context/SolutionContextProvider";
+import { SolutionEditorContext } from "../../context/SolutionEditorContextProvider";
 
 const StyledImputWrapper = styled.div`
     width: 80%;
@@ -14,7 +14,7 @@ const StyledImputWrapper = styled.div`
 interface Props {}
 
 const EditorImputs = (props: Props) => {
-    const { language, theme, setTheme, setLanguage } = useContext(SolutionContext);
+    const { language, theme, setTheme, setLanguage } = useContext(SolutionEditorContext);
 
     const changeLanguage = (event: any) => {
         setLanguage(event.target.value);

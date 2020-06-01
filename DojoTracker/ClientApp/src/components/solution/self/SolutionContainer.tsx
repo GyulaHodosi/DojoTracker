@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect, Fragment } from "react";
 import { useParams } from "react-router-dom";
-import { DojoContext } from "../context/DojoContextProvider";
-import { IBasicDojoInfo } from "../../static/util/interfaces";
-import { SolutionContext } from "../context/SolutionContextProvider";
+import { DojoContext } from "../../context/DojoContextProvider";
+import { IBasicDojoInfo } from "../../../static/util/interfaces";
+import { SolutionEditorContext } from "../../context/SolutionEditorContextProvider";
 import Solution from "./Solution";
 
 interface Props {}
@@ -11,7 +11,7 @@ const DojoDetailed = (props: Props) => {
     const { id } = useParams();
 
     const { getById } = useContext(DojoContext);
-    const { setDojoId } = useContext(SolutionContext);
+    const { setDojoId } = useContext(SolutionEditorContext);
 
     const [dojo, setDojo] = useState<null | IBasicDojoInfo>();
 

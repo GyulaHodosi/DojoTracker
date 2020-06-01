@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import { EmptyButton } from "../styled-components/Reusables";
+import { EmptyButton } from "../../styled-components/Reusables";
+import { useHistory } from "react-router-dom";
+import { SolutionEditorContext } from "../../context/SolutionEditorContextProvider";
 
 const StyledWrapper = styled.div`
     display: flex;
@@ -36,14 +38,23 @@ interface Props {
 }
 
 const ActionButtons = (props: Props) => {
+    const history = useHistory();
+
+    const { dojoId } = useContext(SolutionEditorContext);
+
     const goToDojoPage = () => {
         window.open(props.link, "_blank");
+    };
+
+    const goToSolutions = () => {
+        history.push(`/solutions/${dojoId}`);
     };
 
     return (
         <StyledWrapper>
             <EmptyButton onClick={goToDojoPage}>Attempt</EmptyButton>
             <EmptyButton onClick={() => props.onSave()}>Save solution</EmptyButton>
+            <EmptyButton onClick={() => goToSolutions()}>Unlock solutions</EmptyButton>
         </StyledWrapper>
     );
 };

@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import { Container } from "../styled-components/Reusables";
-import { IBasicDojoInfo } from "../../static/util/interfaces";
+import { Container } from "../../styled-components/Reusables";
+import { IBasicDojoInfo } from "../../../static/util/interfaces";
 import SolutionEditor from "./SolutionEditor";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import ActionButtons from "./ActionButtons";
 import EditorImputs from "./EditorImputs";
-import { SolutionContext } from "../context/SolutionContextProvider";
+import { SolutionEditorContext } from "../../context/SolutionEditorContextProvider";
 
 const CustomContainer = styled(Container)`
     margin: 1rem 0;
@@ -14,7 +14,7 @@ const CustomContainer = styled(Container)`
 
 const Solution = ({ dojo }: { dojo: IBasicDojoInfo }) => {
     const history = useHistory();
-    const { postSolution } = useContext(SolutionContext);
+    const { postSolution } = useContext(SolutionEditorContext);
 
     const saveSolution = () => {
         postSolution();
