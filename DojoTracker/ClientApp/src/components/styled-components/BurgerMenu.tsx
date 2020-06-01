@@ -15,12 +15,12 @@ const BurgerMenu = styled.div`
         color: #333;
 
         &::before {
-            font-size: 0.8rem;
-            font-weight: 800;
+            font-size: 0.6rem;
+            font-weight: bold;
             font-style: normal;
             line-height: 1rem;
             display: inline-block;
-            padding-right: 15px;
+            padding-right: 0.4rem;
             content: attr(data-text);
             letter-spacing: 0.2rem;
             text-transform: uppercase;
@@ -40,8 +40,8 @@ const BurgerMenu = styled.div`
     & .burger::before {
         content: "";
         background-color: #333;
-        width: 24px;
-        height: 3px;
+        width: 1.5rem;
+        height: 0.15rem;
         transition: transform 0.5s, opacity 0.5s, background-color 0.5s;
     }
 
