@@ -53,5 +53,13 @@ namespace DojoTracker.Controllers
 
             return Ok();
         }
+        
+        [HttpGet("{id}/listAll")]
+        public async Task<IActionResult> GetAllSolutionsByDojoId(int id)
+        {
+            var solutions = await _repository.ListSolutionsByDojoId(id).ToListAsync();
+
+            return Ok(solutions);
+        }
     }
 }
