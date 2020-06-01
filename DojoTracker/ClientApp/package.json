@@ -19,6 +19,7 @@
         "axios": "^0.19.2",
         "history": "^4.10.1",
         "node-sass": "^4.14.1",
+        "prismjs": "^1.20.0",
         "react": "^16.13.1",
         "react-ace": "^8.1.0",
         "react-dom": "^16.13.1",
@@ -50,6 +51,8 @@
         ]
     },
     "devDependencies": {
-        "@types/styled-components": "^5.1.0"
+        "@types/prismjs": "^1.16.1",
+        "@types/styled-components": "^5.1.0",
+        "babel-plugin-prismjs": "^2.0.1"
     }
 }
