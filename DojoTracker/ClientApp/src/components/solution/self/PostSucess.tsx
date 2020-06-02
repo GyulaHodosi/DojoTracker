@@ -49,8 +49,12 @@ const PostSucess = () => {
                 Congrats, you have sucessfully saved your solution for <span>{title}</span> in <span>{language}.</span>
             </h3>
             <div>
-                <EmptyButton onClick={goBack}>Back to dojo</EmptyButton>
-                <EmptyButton onClick={goNew}>Try another</EmptyButton>
+                <EmptyButton onClick={goBack} id="back-todojo-btn">
+                    Back to dojo
+                </EmptyButton>
+                <EmptyButton onClick={goNew} id="back-tolist-btn">
+                    Try another
+                </EmptyButton>
             </div>
         </SuccessContainer>
     );

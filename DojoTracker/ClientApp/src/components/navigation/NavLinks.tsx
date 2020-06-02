@@ -61,16 +61,17 @@ interface Props {
 const NavLinks = (props: Props) => {
     return (
         <StyledNavLinks mobile={props.mobile}>
-            <p>
+            <p id="dojo-link-nav">
                 <CustomLink to="/dojos">Dojos</CustomLink>
             </p>
-            <p>
+            <p id="ranking-link-nav">
                 <CustomLink to="/ranking">Ranking</CustomLink>
             </p>
             <p
                 onClick={() => {
                     window.open("https://www.youtube.com/watch?v=DKP16d_WdZM", "_blank");
                 }}
+                id="profile-link-nav"
             >
                 Profile
             </p>

@@ -29,8 +29,6 @@ const SolutionCard = (props: Props) => {
         setTimeout(() => Prism.highlightAll(), 0);
     }, []);
 
-    console.log(props.language);
-
     return (
         <StyledSolutionCard>
             <pre className="line-numbers">

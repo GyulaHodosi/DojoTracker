@@ -44,7 +44,7 @@ const SolutionEditor = (props: Props) => {
     };
 
     return (
-        <StyledEditorWrapper>
+        <StyledEditorWrapper id="solution-editor-window">
             <AceEditor
                 className="editor-window"
                 width="100%"

@@ -28,7 +28,7 @@ const EditorImputs = (props: Props) => {
         <StyledImputWrapper>
             {language && theme && (
                 <Fragment>
-                    <div className="select">
+                    <div className="select" id="language-select-dropdown">
                         <select
                             onChange={(event) => changeLanguage(event)}
                             defaultValue={language}
@@ -43,7 +43,7 @@ const EditorImputs = (props: Props) => {
                         </select>
                         <label className="select-label">Language</label>
                     </div>
-                    <div className="select">
+                    <div className="select" id="theme-select-dropdown">
                         <select
                             defaultValue={theme}
                             onChange={(event) => changeEditorTheme(event)}

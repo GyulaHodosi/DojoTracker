@@ -12,9 +12,15 @@ const SolutionHeaders = (props: Props) => {
                 props.onClick(event);
             }}
         >
-            <p data-reference="">User</p>
-            <p data-reference="language">Language</p>
-            <p data-reference="submissionDate">Submission date</p>
+            <p data-reference="" id="user-sort-btn">
+                User
+            </p>
+            <p data-reference="language" id="language-sort-btn">
+                Language
+            </p>
+            <p data-reference="submissionDate" id="date-sort-btn">
+                Submission date
+            </p>
             <p data-reference="">Solution</p>
         </HeaderTile>
     );
