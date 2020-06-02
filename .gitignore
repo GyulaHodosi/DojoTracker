@@ -351,3 +351,7 @@ MigrationBackup/
 
 # Migrations
 **/migrations/*
+
+**/.idea/workspace.xml 
+**/.idea/tasks.xml
+**/.idea/contentModel.xml
