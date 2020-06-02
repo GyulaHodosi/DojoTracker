@@ -21,7 +21,7 @@
       <e p="bin" t="ExcludeRecursive" />
       <e p="ClientApp" t="Include">
         <e p=".gitignore" t="Include" />
-        <e p="Dockerfile" t="Include" />
+        <e p=".travis.yml" t="Include" />
         <e p="node_modules\@babel\parser" t="IncludeRecursive" />
         <e p="node_modules\@babel\types" t="IncludeRecursive" />
         <e p="node_modules\@fortawesome\fontawesome-common-types" t="IncludeRecursive" />

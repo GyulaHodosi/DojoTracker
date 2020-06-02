@@ -52,9 +52,15 @@ const ActionButtons = (props: Props) => {
 
     return (
         <StyledWrapper>
-            <EmptyButton onClick={goToDojoPage}>Attempt</EmptyButton>
-            <EmptyButton onClick={() => props.onSave()}>Save solution</EmptyButton>
-            <EmptyButton onClick={() => goToSolutions()}>Unlock solutions</EmptyButton>
+            <EmptyButton onClick={goToDojoPage} id="dojo-link-btn">
+                Attempt
+            </EmptyButton>
+            <EmptyButton onClick={() => props.onSave()} id="save-solution-btn">
+                Save solution
+            </EmptyButton>
+            <EmptyButton onClick={() => goToSolutions()} id="unlock-solutions-btn">
+                Unlock solutions
+            </EmptyButton>
         </StyledWrapper>
     );
 };

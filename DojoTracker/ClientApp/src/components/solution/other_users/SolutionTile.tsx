@@ -44,6 +44,7 @@ const SolutionTile = (props: Props) => {
                 onClick={() => {
                     setIsHidden(!isHidden);
                 }}
+                id={`solution-card-${props.solution.id}`}
             >
                 {user && (
                     <Fragment>
@@ -53,7 +54,11 @@ const SolutionTile = (props: Props) => {
                         <p>{props.solution.language}</p>
                         <p>{stringifiedDate(date)}</p>
                         <p className="arrow">
-                            <FontAwesomeIcon icon={isHidden ? faChevronDown : faChevronUp} size="lg" />
+                            <FontAwesomeIcon
+                                icon={isHidden ? faChevronDown : faChevronUp}
+                                size="lg"
+                                id="solution-open-arrow"
+                            />
                         </p>
                     </Fragment>
                 )}

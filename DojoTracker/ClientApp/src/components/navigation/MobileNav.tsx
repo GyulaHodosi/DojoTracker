@@ -69,12 +69,12 @@ const MobileNav = (props: Props) => {
                     <Fragment>
                         <DojoSearchContainer mobile={true} />
                         <NavLinks mobile={true} />
-                        <div className="std-log">
+                        <div className="std-log" id="mobile-logout-btn">
                             <LogOut />
                         </div>
                     </Fragment>
                 ) : (
-                    <div className="std-log">
+                    <div className="std-log" id="mobile-login-btn">
                         <SignIn />
                     </div>
                 )}
