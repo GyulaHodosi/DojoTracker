@@ -1,6 +1,7 @@
 import React from "react";
 import { DataTile } from "../styled-components/Reusables";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 const CustomDataTile = styled(DataTile)`
     background-color: ${(props: { isCurrentUser: boolean }) =>
@@ -13,10 +14,20 @@ const CustomDataTile = styled(DataTile)`
 `;
 
 const RankingTile = ({ userStats, isCurrentUser }: { userStats: any; isCurrentUser: boolean }) => {
+    const history = useHistory();
+
+    const redirectToUser = () => {
+        history.push(`/user/profile?id=${userStats.userId}`);
+    };
+
     return (
         <CustomDataTile isCurrentUser={isCurrentUser}>
             <p>{userStats.rank}.</p>
-            <p>
+            <p
+                onClick={() => {
+                    redirectToUser();
+                }}
+            >
                 {userStats.firstName} {userStats.lastName}
             </p>
             <p>{userStats.numOfCompletedDojos}</p>
