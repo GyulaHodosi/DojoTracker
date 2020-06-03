@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export const Container = styled.div`
     display: flex;
@@ -31,6 +31,21 @@ export const CenteredContainer = styled(Container)`
 `;
 
 export const CustomLink = styled(Link)`
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+
+    &:focus,
+    &:hover,
+    &:visited,
+    &:link,
+    &:active {
+        text-decoration: none;
+    }
+`;
+
+export const CustomNavlink = styled(NavLink)`
     text-decoration: none;
     color: inherit;
     font-size: inherit;
@@ -149,5 +164,35 @@ export const HeaderTile = styled.div`
 
     & p:last-child {
         text-align: right;
+    }
+`;
+
+export const StyledCard = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 25%;
+    height: auto;
+    font-size: 0.9rem;
+    border: 1px solid gray;
+    padding: 2rem;
+    margin: 0.7rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.15);
+    text-align: center;
+
+    &:hover {
+        cursor: pointer;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    & p,
+    button {
+        margin: 2rem;
+    }
+
+    @media screen and (max-width: 768px) {
+        width: 80%;
     }
 `;
