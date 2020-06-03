@@ -11,7 +11,7 @@ const SandwichMenu = (props: Props) => {
 
     return (
         <BurgerMenu>
-            <i className="burger-menu" data-text="Menu" onClick={() => toggleMenu()}>
+            <i className="burger-menu" data-text="Menu" onClick={() => toggleMenu()} id={"burger-menu"}>
                 <span className="burger"></span>
             </i>
         </BurgerMenu>
