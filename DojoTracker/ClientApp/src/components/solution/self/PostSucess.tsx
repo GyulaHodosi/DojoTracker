@@ -49,10 +49,10 @@ const PostSucess = () => {
                 Congrats, you have sucessfully saved your solution for <span>{title}</span> in <span>{language}.</span>
             </h3>
             <div>
-                <EmptyButton onClick={goBack} id="back-todojo-btn">
+                <EmptyButton onClick={goBack} data-testid="back-todojo-btn">
                     Back to dojo
                 </EmptyButton>
-                <EmptyButton onClick={goNew} id="back-tolist-btn">
+                <EmptyButton onClick={goNew} data-testid="back-tolist-btn">
                     Try another
                 </EmptyButton>
             </div>
