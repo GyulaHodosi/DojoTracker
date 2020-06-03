@@ -92,6 +92,7 @@
           <e p="jest" t="IncludeRecursive" />
           <e p="minimatch" t="IncludeRecursive" />
           <e p="node" t="IncludeRecursive" />
+          <e p="prismjs" t="IncludeRecursive" />
           <e p="prop-types" t="IncludeRecursive" />
           <e p="react" t="IncludeRecursive" />
           <e p="react-dom" t="IncludeRecursive" />
@@ -108,6 +109,7 @@
         <e p="node_modules\ace-builds" t="IncludeRecursive" />
         <e p="node_modules\axios" t="IncludeRecursive" />
         <e p="node_modules\babel-jest" t="IncludeRecursive" />
+        <e p="node_modules\babel-plugin-prismjs" t="IncludeRecursive" />
         <e p="node_modules\chalk" t="IncludeRecursive" />
         <e p="node_modules\chokidar" t="IncludeRecursive" />
         <e p="node_modules\csstype" t="IncludeRecursive" />
@@ -131,6 +133,8 @@
         <e p="node_modules\node-sass" t="IncludeRecursive" />
         <e p="node_modules\pretty-error" t="IncludeRecursive" />
         <e p="node_modules\pretty-format" t="IncludeRecursive" />
+        <e p="node_modules\prismjs" t="IncludeRecursive" />
+        <e p="node_modules\query-string" t="IncludeRecursive" />
         <e p="node_modules\react" t="IncludeRecursive" />
         <e p="node_modules\react-ace" t="IncludeRecursive" />
         <e p="node_modules\react-dom" t="IncludeRecursive" />
@@ -334,6 +338,12 @@
               <e p="NewUser.tsx" t="Include" />
               <e p="SignIn.tsx" t="Include" />
             </e>
+            <e p="user-profile" t="Include">
+              <e p="ProfileCard.tsx" t="Include" />
+              <e p="ProfileContainer.tsx" t="Include" />
+              <e p="ProfileData.tsx" t="Include" />
+              <e p="ProfileMenu.tsx" t="Include" />
+            </e>
           </e>
           <e p="index.css" t="Include" />
           <e p="index.css.map" t="Include" />
@@ -347,6 +357,7 @@
             </e>
             <e p="img" t="Include">
               <e p="codecool_logo.png" t="Include" />
+              <e p="profile-placeholder.png" t="Include" />
             </e>
             <e p="test data" t="Include">
               <e p="dojos.json" t="Include" />
