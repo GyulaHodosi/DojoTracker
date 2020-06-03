@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import { CustomLink } from "../styled-components/Reusables";
+import { CustomLink, CustomNavlink } from "../styled-components/Reusables";
+import { NavLink } from "react-router-dom";
 
 interface StyleProps {
     mobile: boolean;
@@ -39,13 +40,18 @@ const StyledNavLinks = styled.ul`
             width: 0%;
             content: ".";
             color: transparent;
-            background: black;
+            background: #dc3545;
             height: 2px;
             transition: all 0.5s;
         }
 
         &:hover::after {
             width: 100%;
+        }
+
+        & .nav-active {
+            color: #dc3545;
+            font-weight: bold;
         }
     }
 
@@ -62,18 +68,19 @@ const NavLinks = (props: Props) => {
     return (
         <StyledNavLinks mobile={props.mobile}>
             <p id="dojo-link-nav">
-                <CustomLink to="/dojos">Dojos</CustomLink>
+                <CustomNavlink to="/dojos" activeClassName="nav-active">
+                    Dojos
+                </CustomNavlink>
             </p>
             <p id="ranking-link-nav">
-                <CustomLink to="/ranking">Ranking</CustomLink>
+                <CustomNavlink to="/ranking" activeClassName="nav-active">
+                    Ranking
+                </CustomNavlink>
             </p>
-            <p
-                onClick={() => {
-                    window.open("https://www.youtube.com/watch?v=DKP16d_WdZM", "_blank");
-                }}
-                id="profile-link-nav"
-            >
-                Profile
+            <p id="profile-link-nav">
+                <CustomNavlink to="/user/profile" activeClassName="nav-active">
+                    Profile
+                </CustomNavlink>
             </p>
         </StyledNavLinks>
     );
