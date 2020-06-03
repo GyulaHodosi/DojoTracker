@@ -12,7 +12,10 @@ export interface IBasicUserInfo {
     firstName: string;
     lastName: string;
     id: number;
-    rank: number;
+    nickName: string;
+    preferredLanguage: string;
+    preferredEditorTheme: string;
+    avatarUrl: string;
 }
 
 export interface IDojoSolution {
