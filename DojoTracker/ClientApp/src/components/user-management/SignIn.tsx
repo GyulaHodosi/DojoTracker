@@ -35,7 +35,6 @@ const SignIn = (props: Props) => {
         sessionStorage.setItem("dta-login-state", JSON.stringify({ isLoggedIn: true }));
         setIsLoggedIn(true);
         setUser(user);
-        console.log(user);
         redirectUser();
     };
 
