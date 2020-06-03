@@ -4,10 +4,8 @@ import HomeLink from "./HomeLink";
 import SignIn from "../user-management/SignIn";
 import LogOut from "../user-management/LogOut";
 import NavLinks from "./NavLinks";
-
 import { LoginContext } from "../context/LoginContextProvider";
 import DojoSearchContainer from "../dojos/DojoSearchContainer";
-
 import { useLocation } from "react-router-dom";
 import SandwichMenu from "./SandwichMenu";
 
@@ -71,7 +69,7 @@ const Navbar = (props: Props) => {
             {isLoggedIn ? (
                 <Fragment>
                     <NavLinks mobile={false} /> {isSearchVisible() && <DojoSearchContainer mobile={false} />}
-                    <div className="std-log"id="logout-btn">
+                    <div className="std-log" id="logout-btn">
                         <LogOut />
                     </div>
                 </Fragment>
