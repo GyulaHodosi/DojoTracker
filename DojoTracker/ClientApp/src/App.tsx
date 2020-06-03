@@ -31,6 +31,7 @@ import MobileNav from "./components/navigation/MobileNav";
 import SolutionEditorContextProvider from "./components/context/SolutionEditorContextProvider";
 import SolutionContextProvider from "./components/context/SolutionContextProvider";
 import SolutionsContainer from "./components/solution/other_users/SolutionsContainer";
+import ProfileContainer from "./components/user-profile/ProfileContainer";
 
 function App() {
     setup.setupInterceptors();
@@ -64,6 +65,9 @@ function App() {
                                         <SolutionContextProvider>
                                             <SolutionsContainer />
                                         </SolutionContextProvider>
+                                    </PrivateRoute>
+                                    <PrivateRoute exact path="/user/profile">
+                                        <ProfileContainer />
                                     </PrivateRoute>
                                     <AdminRoute exact path="/admin/statistics">
                                         <UserStatContextProvider>
