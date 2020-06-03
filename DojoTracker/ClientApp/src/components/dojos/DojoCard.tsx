@@ -51,13 +51,12 @@ const DojoCard = (props: Props) => {
     return (
         <StyledCard
             onClick={(event) => redirect(event)}
-            data-testid="dojocard-container"
             className="dojo-card"
-            id={`dojo-card-${props.dojo.id}`}
+            data-testid={`dojo-card-${props.dojo.id}`}
         >
             <p>{props.dojo.title}</p>
             <StatusIndicator isComplete={props.dojo.isDone} />
-            <EmptyButton className="redirect-btn" id={`dojo-link-${props.dojo.id}`}>
+            <EmptyButton className="redirect-btn" data-testid={`dojo-link-${props.dojo.id}`}>
                 Attempt
             </EmptyButton>
         </StyledCard>
