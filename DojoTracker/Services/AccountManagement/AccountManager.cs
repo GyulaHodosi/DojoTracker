@@ -19,6 +19,7 @@ namespace DojoTracker.Services.AccountManagement
         {
             return new PublicUserData
             {
+                Id= user.Id,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 NickName = user.NickName,
