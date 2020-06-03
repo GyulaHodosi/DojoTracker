@@ -1,27 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Álmos\.nuget\packages\microsoft.net.test.sdk\16.4.0\build\netcoreapp2.1" t="Include">
+    <e p="C:\Users\kgalm\.nuget\packages\microsoft.net.test.sdk\16.4.0\build\netcoreapp2.1" t="Include">
       <e p="Microsoft.NET.Test.Sdk.Program.cs" t="Include" />
     </e>
-    <e p="C:\Users\Álmos\.nuget\packages\microsoft.testplatform.testhost\16.4.0\build\netcoreapp2.1\x64\testhost.dll" t="Include" />
-    <e p="C:\Users\Álmos\.nuget\packages\microsoft.testplatform.testhost\16.4.0\build\netcoreapp2.1\x64\testhost.exe" t="Include" />
-    <e p="C:\Users\Álmos\.nuget\packages\nunit3testadapter\3.15.1\build\netcoreapp2.0\nunit.engine.api.dll" t="Include" />
-    <e p="C:\Users\Álmos\.nuget\packages\nunit3testadapter\3.15.1\build\netcoreapp2.0\nunit.engine.dll" t="Include" />
-    <e p="C:\Users\Álmos\.nuget\packages\nunit3testadapter\3.15.1\build\netcoreapp2.0\NUnit3.TestAdapter.dll" t="Include" />
-    <e p="C:\Users\Álmos\.nuget\packages\nunit3testadapter\3.15.1\build\netcoreapp2.0\NUnit3.TestAdapter.pdb" t="Include" />
-    <e p="C:\Users\Álmos\AppData\Local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Álmos\AppData\Local\JetBrains\Rider2020.1\resharper-host\Local\Transient\ReSharperHost\v201\SolutionCaches\_DojoTracker.-1319974358.00" t="ExcludeRecursive" />
-    <e p="C:\Users\Álmos\AppData\Roaming\JetBrains\Rider2020.1\consoles\db" t="IncludeRecursive" />
-    <e p="C:\Users\Álmos\AppData\Roaming\JetBrains\Rider2020.1\extensions" t="IncludeRecursive" />
-    <e p="C:\Users\Álmos\AppData\Roaming\JetBrains\Rider2020.1\scratches" t="IncludeRecursive" />
+    <e p="C:\Users\kgalm\.nuget\packages\microsoft.testplatform.testhost\16.4.0\build\netcoreapp2.1\x64\testhost.dll" t="Include" />
+    <e p="C:\Users\kgalm\.nuget\packages\microsoft.testplatform.testhost\16.4.0\build\netcoreapp2.1\x64\testhost.exe" t="Include" />
+    <e p="C:\Users\kgalm\.nuget\packages\nunit3testadapter\3.15.1\build\netcoreapp2.0\nunit.engine.api.dll" t="Include" />
+    <e p="C:\Users\kgalm\.nuget\packages\nunit3testadapter\3.15.1\build\netcoreapp2.0\nunit.engine.dll" t="Include" />
+    <e p="C:\Users\kgalm\.nuget\packages\nunit3testadapter\3.15.1\build\netcoreapp2.0\NUnit3.TestAdapter.dll" t="Include" />
+    <e p="C:\Users\kgalm\.nuget\packages\nunit3testadapter\3.15.1\build\netcoreapp2.0\NUnit3.TestAdapter.pdb" t="Include" />
+    <e p="C:\Users\kgalm\AppData\Local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\kgalm\AppData\Local\JetBrains\Rider2020.1\resharper-host\Local\Transient\ReSharperHost\v201\SolutionCaches\_DojoTracker.-1319974358.00" t="ExcludeRecursive" />
     <e p="D:\Code\C#\dojoTrackerBE\DojoTracker" t="IncludeRecursive">
       <e p="appsettings.Development.json" t="Include" />
       <e p="appsettings.json" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
       <e p="ClientApp" t="Include">
         <e p=".gitignore" t="Include" />
-        <e p=".travis.yml" t="Include" />
+        <e p="build" t="Include">
+          <e p="android-chrome-192x192.png" t="Include" />
+          <e p="android-chrome-512x512.png" t="Include" />
+          <e p="apple-touch-icon-114x114.png" t="Include" />
+          <e p="apple-touch-icon-120x120.png" t="Include" />
+          <e p="apple-touch-icon-144x144.png" t="Include" />
+          <e p="apple-touch-icon-152x152.png" t="Include" />
+          <e p="apple-touch-icon-180x180.png" t="Include" />
+          <e p="apple-touch-icon-57x57.png" t="Include" />
+          <e p="apple-touch-icon-60x60.png" t="Include" />
+          <e p="apple-touch-icon-72x72.png" t="Include" />
+          <e p="apple-touch-icon-76x76.png" t="Include" />
+          <e p="apple-touch-icon.png" t="Include" />
+          <e p="asset-manifest.json" t="Include" />
+          <e p="browserconfig.xml" t="Include" />
+          <e p="favicon-16x16.png" t="Include" />
+          <e p="favicon-32x32.png" t="Include" />
+          <e p="favicon.ico" t="Include" />
+          <e p="index.html" t="Include" />
+          <e p="mstile-144x144.png" t="Include" />
+          <e p="mstile-150x150.png" t="Include" />
+          <e p="mstile-310x150.png" t="Include" />
+          <e p="mstile-310x310.png" t="Include" />
+          <e p="mstile-70x70.png" t="Include" />
+          <e p="precache-manifest.d6dca8d47e8f24b730c6b9848f9be492.js" t="Include" />
+          <e p="safari-pinned-tab.svg" t="Include" />
+          <e p="service-worker.js" t="Include" />
+          <e p="site.webmanifest" t="Include" />
+          <e p="static" t="Include">
+            <e p="css" t="Include">
+              <e p="main.33ea559d.chunk.css" t="Include" />
+              <e p="main.33ea559d.chunk.css.map" t="Include" />
+            </e>
+            <e p="js" t="Include">
+              <e p="2.29b0a4e7.chunk.js" t="Include" />
+              <e p="2.29b0a4e7.chunk.js.LICENSE.txt" t="Include" />
+              <e p="2.29b0a4e7.chunk.js.map" t="Include" />
+              <e p="main.fbb83713.chunk.js" t="Include" />
+              <e p="main.fbb83713.chunk.js.map" t="Include" />
+              <e p="runtime-main.64def3ff.js" t="Include" />
+              <e p="runtime-main.64def3ff.js.map" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Dockerfile" t="Include" />
         <e p="node_modules\@babel\parser" t="IncludeRecursive" />
         <e p="node_modules\@babel\types" t="IncludeRecursive" />
         <e p="node_modules\@fortawesome\fontawesome-common-types" t="IncludeRecursive" />
@@ -51,7 +92,6 @@
           <e p="jest" t="IncludeRecursive" />
           <e p="minimatch" t="IncludeRecursive" />
           <e p="node" t="IncludeRecursive" />
-          <e p="prismjs" t="IncludeRecursive" />
           <e p="prop-types" t="IncludeRecursive" />
           <e p="react" t="IncludeRecursive" />
           <e p="react-dom" t="IncludeRecursive" />
@@ -68,7 +108,6 @@
         <e p="node_modules\ace-builds" t="IncludeRecursive" />
         <e p="node_modules\axios" t="IncludeRecursive" />
         <e p="node_modules\babel-jest" t="IncludeRecursive" />
-        <e p="node_modules\babel-plugin-prismjs" t="IncludeRecursive" />
         <e p="node_modules\chalk" t="IncludeRecursive" />
         <e p="node_modules\chokidar" t="IncludeRecursive" />
         <e p="node_modules\csstype" t="IncludeRecursive" />
@@ -92,7 +131,6 @@
         <e p="node_modules\node-sass" t="IncludeRecursive" />
         <e p="node_modules\pretty-error" t="IncludeRecursive" />
         <e p="node_modules\pretty-format" t="IncludeRecursive" />
-        <e p="node_modules\prismjs" t="IncludeRecursive" />
         <e p="node_modules\react" t="IncludeRecursive" />
         <e p="node_modules\react-ace" t="IncludeRecursive" />
         <e p="node_modules\react-dom" t="IncludeRecursive" />
@@ -297,6 +335,8 @@
               <e p="SignIn.tsx" t="Include" />
             </e>
           </e>
+          <e p="index.css" t="Include" />
+          <e p="index.css.map" t="Include" />
           <e p="index.scss" t="Include" />
           <e p="index.tsx" t="Include" />
           <e p="react-app-env.d.ts" t="Include" />
@@ -333,11 +373,6 @@
       </e>
       <e p="DojoTracker.csproj" t="IncludeRecursive" />
       <e p="DojoTracker.sln" t="IncludeFlat" />
-      <e p="Migrations" t="Include">
-        <e p="20200525131331_asdasda.cs" t="Include" />
-        <e p="20200525131331_asdasda.Designer.cs" t="Include" />
-        <e p="DojoTrackerDbContextModelSnapshot.cs" t="Include" />
-      </e>
       <e p="Models" t="Include">
         <e p="Dojo.cs" t="Include" />
         <e p="DojoList.cs" t="Include" />
