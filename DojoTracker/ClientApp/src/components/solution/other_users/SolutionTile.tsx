@@ -44,7 +44,7 @@ const SolutionTile = (props: Props) => {
                 onClick={() => {
                     setIsHidden(!isHidden);
                 }}
-                data-testid={`solution-card-${props.solution.id}`}
+                id={`solution-card-${props.solution.id}`}
             >
                 {user && (
                     <Fragment>

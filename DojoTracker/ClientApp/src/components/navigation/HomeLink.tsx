@@ -26,7 +26,7 @@ const HomeLink = (props: Props) => {
     };
 
     return (
-        <StyledHomeLink onClick={redirectHome}  data-testid="home-btn">
+        <StyledHomeLink onClick={redirectHome}  id="home-btn">
             <Logo />
             <TitleLogo />
         </StyledHomeLink>
