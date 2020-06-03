@@ -71,12 +71,12 @@ const Navbar = (props: Props) => {
             {isLoggedIn ? (
                 <Fragment>
                     <NavLinks mobile={false} /> {isSearchVisible() && <DojoSearchContainer mobile={false} />}
-                    <div className="std-log" id="logout-btn">
+                    <div className="std-log" data-testid="logout-btn">
                         <LogOut />
                     </div>
                 </Fragment>
             ) : (
-                <div className="std-log" id="login-btn">
+                <div className="std-log" data-testid="login-btn">
                     <SignIn />
                 </div>
             )}

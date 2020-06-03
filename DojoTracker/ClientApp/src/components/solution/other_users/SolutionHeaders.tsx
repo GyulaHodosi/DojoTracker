@@ -12,13 +12,13 @@ const SolutionHeaders = (props: Props) => {
                 props.onClick(event);
             }}
         >
-            <p data-reference="" id="user-sort-btn">
+            <p data-reference="" data-testid="user-sort-btn">
                 User
             </p>
-            <p data-reference="language" id="language-sort-btn">
+            <p data-reference="language" data-testid="language-sort-btn">
                 Language
             </p>
-            <p data-reference="submissionDate" id="date-sort-btn">
+            <p data-reference="submissionDate" data-testid="date-sort-btn">
                 Submission date
             </p>
             <p data-reference="">Solution</p>
