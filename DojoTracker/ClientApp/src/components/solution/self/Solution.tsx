@@ -14,12 +14,15 @@ const CustomContainer = styled(Container)`
 
 const Solution = ({ dojo }: { dojo: IBasicDojoInfo }) => {
     const history = useHistory();
-    const { postSolution } = useContext(SolutionEditorContext);
+    const { postSolution, language } = useContext(SolutionEditorContext);
 
     const saveSolution = () => {
         postSolution();
         dojo.isDone = true;
-        history.push(`/dojos/${dojo.id}/sucess`);
+        history.push({
+            pathname: `/dojos/${dojo.id}/sucess`,
+            state: { title: dojo.title, language: language },
+        });
     };
 
     return (
