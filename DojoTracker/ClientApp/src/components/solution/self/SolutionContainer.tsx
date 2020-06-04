@@ -17,9 +17,9 @@ const DojoDetailed = (props: Props) => {
 
     useEffect(() => {
         (async function getDojo() {
-            const dojoById = await getById(id);
+            const dojoById = await getById(parseInt(id));
             setDojo(dojoById);
-            setDojoId(id);
+            setDojoId(parseInt(id));
         })();
     }, [id, getById, setDojo, setDojoId]);
 
