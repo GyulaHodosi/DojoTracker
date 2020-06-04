@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { IBasicDojoInfo } from "../../static/util/interfaces";
 import { EmptyButton, StyledCard } from "../styled-components/Reusables";
