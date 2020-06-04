@@ -265,6 +265,7 @@
               <e p="DojoContextProvider.tsx" t="Include" />
               <e p="DojoStatContextProvider.tsx" t="Include" />
               <e p="LoginContextProvider.tsx" t="Include" />
+              <e p="ProfilePageContextProvider.tsx" t="Include" />
               <e p="RankingContextProvider.tsx" t="Include" />
               <e p="SearchContextProvider.tsx" t="Include" />
               <e p="SolutionContextProvider.tsx" t="Include" />
@@ -343,6 +344,11 @@
               <e p="ProfileContainer.tsx" t="Include" />
               <e p="ProfileData.tsx" t="Include" />
               <e p="ProfileMenu.tsx" t="Include" />
+              <e p="solutions" t="Include">
+                <e p="ProfileSolutionHeader.tsx" t="Include" />
+                <e p="ProfileSolutions.tsx" t="Include" />
+                <e p="ProfileSolutionTile.tsx" t="Include" />
+              </e>
             </e>
           </e>
           <e p="index.css" t="Include" />
