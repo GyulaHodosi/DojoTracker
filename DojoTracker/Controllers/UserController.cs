@@ -110,6 +110,7 @@ namespace DojoTracker.Controllers
         }
 
         [HttpGet("user/{id}")]
+        [Authorize]
         public async Task<IActionResult> GetUserById(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
