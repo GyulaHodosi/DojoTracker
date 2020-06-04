@@ -1,18 +1,19 @@
-import React from "react";
-import { StyledCard } from "../styled-components/Reusables";
+import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faChartBar, faList } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { ProfilePageContext } from "../context/ProfilePageContextProvider";
 
 const StyledProfileMenu = styled.div`
     display: flex;
     flex-direction: column;
     font-size: 1rem;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
     color: gray;
     width: 100%;
+    transition: color 0.5s;
     div {
         padding: 1rem;
 
@@ -23,7 +24,10 @@ const StyledProfileMenu = styled.div`
         &:hover {
             color: #dc3545;
             cursor: pointer;
-            transition: all 0.5s;
+        }
+
+        &.active {
+            color: #dc3545;
         }
     }
 `;
@@ -31,21 +35,32 @@ const StyledProfileMenu = styled.div`
 interface Props {}
 
 const ProfileMenu = (props: Props) => {
-    const toggleSelected = () => {};
+    const { setProfileState } = useContext(ProfilePageContext);
+
+    const toggleSelected = (event: any) => {
+        if (event?.target?.dataset?.menureference !== undefined) {
+            setProfileState(event.target.dataset.menureference);
+        }
+        return;
+    };
 
     return (
-        <StyledProfileMenu>
-            <div>
-                <FontAwesomeIcon icon={faUser} size="1x" />
-                <span>Profile</span>
+        <StyledProfileMenu
+            onClick={(event) => {
+                toggleSelected(event);
+            }}
+        >
+            <div data-menureference="profile">
+                <FontAwesomeIcon icon={faUser} size="1x" data-menureference="profile" />
+                <span data-menureference="profile">Profile</span>
             </div>
-            <div>
-                <FontAwesomeIcon icon={faChartBar} size="1x" />
-                <span>Statistics</span>
+            <div data-menureference="statistics">
+                <FontAwesomeIcon icon={faChartBar} size="1x" data-menureference="statistics" />
+                <span data-menureference="statistics">Statistics</span>
             </div>
-            <div>
-                <FontAwesomeIcon icon={faList} size="1x" />
-                <span>Solutions</span>
+            <div data-menureference="solutions">
+                <FontAwesomeIcon icon={faList} size="1x" data-menureference="solutions" />
+                <span data-menureference="solutions">Solutions</span>
             </div>
         </StyledProfileMenu>
     );
