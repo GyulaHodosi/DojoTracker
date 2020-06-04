@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, Fragment } from "react";
 import styled from "styled-components";
-import { CustomLink, CustomNavlink } from "../styled-components/Reusables";
-import { NavLink } from "react-router-dom";
+import { CustomNavlink } from "../styled-components/Reusables";
+import { useLocation } from "react-router-dom";
+import { UserDataContext } from "../context/UserDataContextProvider";
 
 interface StyleProps {
     mobile: boolean;
@@ -65,24 +66,37 @@ interface Props {
 }
 
 const NavLinks = (props: Props) => {
+    const { user } = useContext(UserDataContext);
+    const location = useLocation();
+
     return (
-        <StyledNavLinks mobile={props.mobile}>
-            <p id="dojo-link-nav">
-                <CustomNavlink to="/dojos" activeClassName="nav-active">
-                    Dojos
-                </CustomNavlink>
-            </p>
-            <p id="ranking-link-nav">
-                <CustomNavlink to="/ranking" activeClassName="nav-active">
-                    Ranking
-                </CustomNavlink>
-            </p>
-            <p id="profile-link-nav">
-                <CustomNavlink to="/user/profile" activeClassName="nav-active">
-                    Profile
-                </CustomNavlink>
-            </p>
-        </StyledNavLinks>
+        <Fragment>
+            {user && (
+                <StyledNavLinks mobile={props.mobile}>
+                    <p id="dojo-link-nav">
+                        <CustomNavlink to="/dojos" activeClassName="nav-active">
+                            Dojos
+                        </CustomNavlink>
+                    </p>
+                    <p id="ranking-link-nav">
+                        <CustomNavlink to="/ranking" activeClassName="nav-active">
+                            Ranking
+                        </CustomNavlink>
+                    </p>
+                    <p id="profile-link-nav">
+                        <CustomNavlink
+                            to={{
+                                pathname: `/user/${user.firstName} ${user.lastName}`,
+                                state: { userId: user.id },
+                            }}
+                            activeClassName={(location.state as any)?.userId === user.id ? "nav-active" : ""}
+                        >
+                            Profile
+                        </CustomNavlink>
+                    </p>
+                </StyledNavLinks>
+            )}
+        </Fragment>
     );
 };
 
