@@ -23,7 +23,8 @@ namespace DojoTracker.Services.Repositories
         public async Task AddSolutionAsync(Solution solution, string userId)
         {
             solution.UserId = userId;
-            solution.SubmissionDate = DateTime.Now;
+            solution.SubmissionDate = DateTime.UtcNow;
+            solution.SubmissionDate = solution.SubmissionDate.AddHours(2);
 
             var result = FindSolution(solution).Result;
 
