@@ -27,12 +27,12 @@ const DojoContextProvider = ({ children }: { children: ReactNode }) => {
         if (isLoggedIn === true) {
             listAll();
         }
-    }, [isLoggedIn]);
+    }, [isLoggedIn, searchValue]);
 
-    const getById = async (id: string): Promise<IBasicDojoInfo> => {
+    const getById = async (id: number): Promise<IBasicDojoInfo> => {
         return dojos === undefined
             ? (await axios.get(`/api/dojo/${id}`)).data
-            : dojos.find((dojo: IBasicDojoInfo) => dojo.id.toString() === id);
+            : dojos.find((dojo: IBasicDojoInfo) => dojo.id === id);
     };
 
     const listAll = () => {
@@ -53,10 +53,10 @@ const DojoContextProvider = ({ children }: { children: ReactNode }) => {
         history.push("/dojos");
     };
 
-    const getTitleById = async (id: string): Promise<string> => {
+    const getTitleById = async (id: number): Promise<string> => {
         const dojo = await getById(id);
 
-        return dojo.title;
+        return dojo?.title;
     };
 
     const addDojo = (dojo: IBasicDojoInfo) => {
