@@ -54,10 +54,20 @@ namespace DojoTracker.Controllers
             return Ok();
         }
         
-        [HttpGet("{id}/listAll")]
+        [HttpGet("dojo/{id}/")]
+        [Authorize]
         public async Task<IActionResult> GetAllSolutionsByDojoId(int id)
         {
             var solutions = await _repository.ListSolutionsByDojoId(id).ToListAsync();
+
+            return Ok(solutions);
+        }
+        
+        [HttpGet("user/{userId}")]
+        [Authorize]
+        public async Task<IActionResult> GetAllSolutionsByUserId(string userId)
+        {
+            var solutions = await _repository.ListSolutionsByUserIdAsync(userId);
 
             return Ok(solutions);
         }
