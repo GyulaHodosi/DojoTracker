@@ -21,7 +21,7 @@ const SolutionContextProvider = ({ children }: { children: ReactNode }) => {
     const getSolutionsByDojoId = (id: string) => {
         const idToNumber = parseInt(id);
 
-        axios.get(`/api/solutions/${idToNumber}/listAll`).then((response: AxiosResponse<IDojoSolution[]>) => {
+        axios.get(`/api/solutions/dojo/${idToNumber}`).then((response: AxiosResponse<IDojoSolution[]>) => {
             response.data.forEach((solution) => {
                 solution.submissionDate = normalizeDate(solution.submissionDate);
             });
