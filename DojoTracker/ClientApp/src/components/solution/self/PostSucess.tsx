@@ -1,9 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import { Container, EmptyButton } from "../../styled-components/Reusables";
-import { DojoContext } from "../../context/DojoContextProvider";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { SolutionEditorContext } from "../../context/SolutionEditorContextProvider";
 
 const SuccessContainer = styled(Container)`
     text-align: center;
@@ -19,21 +17,8 @@ const SuccessContainer = styled(Container)`
 `;
 
 const PostSucess = () => {
-    const { language } = useContext(SolutionEditorContext);
-
-    const { id } = useParams();
-
-    const { getTitleById } = useContext(DojoContext);
-
-    const [title, setTitle] = useState<undefined | string>();
-
     const history = useHistory();
-
-    useEffect(() => {
-        getTitleById(id).then((response: string) => {
-            setTitle(response);
-        });
-    });
+    const location = useLocation();
 
     const goNew = () => {
         history.push("/dojos");
@@ -46,7 +31,8 @@ const PostSucess = () => {
     return (
         <SuccessContainer>
             <h3>
-                Congrats, you have sucessfully saved your solution for <span>{title}</span> in <span>{language}.</span>
+                Congrats, you have sucessfully saved your solution for <span>{(location.state as any)?.title}</span> in{" "}
+                <span>{(location.state as any)?.language}</span>.
             </h3>
             <div>
                 <EmptyButton onClick={goBack} id="back-todojo-btn">
