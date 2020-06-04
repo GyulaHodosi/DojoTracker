@@ -45,7 +45,7 @@ namespace DojoTracker.Services.Repositories
 
         public async Task<IEnumerable<Dojo>> ListUserDojosByDojoNameAsync(string userId, string dojoTitle)
         {
-            var dojos = await _context.Dojos.Where(dojo => dojo.Title.Contains(dojoTitle)).ToListAsync();
+            var dojos = await _context.Dojos.Where(dojo => dojo.Title.ToLower().Contains(dojoTitle.ToLower())).ToListAsync();
             
             await MarkAsSolved(dojos, userId);
 
