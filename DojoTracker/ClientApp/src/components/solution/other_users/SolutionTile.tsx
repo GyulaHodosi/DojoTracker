@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import SolutionCard from "./SolutionCard";
+import { useHistory } from "react-router-dom";
 
 const StyledSolutionCard = styled.div`
     display: flex;
@@ -18,6 +19,16 @@ const StyledSolutionCard = styled.div`
     .arrow {
         color: #dc3545;
     }
+
+    .user {
+        position: relative;
+
+        &:hover {
+            cursor: pointer;
+            color: #dc3545;
+            font-weight: bold;
+        }
+    }
 `;
 
 interface Props {
@@ -28,6 +39,7 @@ const SolutionTile = (props: Props) => {
     const { getUserDataById } = useContext(UserDataContext);
     const [user, setUser] = useState<any>();
     const [isHidden, setIsHidden] = useState<boolean>(true);
+    const history = useHistory();
 
     const date = props.solution.submissionDate;
 
@@ -37,6 +49,13 @@ const SolutionTile = (props: Props) => {
             setUser(userData);
         })();
     }, []);
+
+    const redirectToUser = () => {
+        history.push({
+            pathname: `/user/${user.firstName} ${user.lastName}`,
+            state: { userId: user.id },
+        });
+    };
 
     return (
         <StyledSolutionCard>
@@ -48,7 +67,12 @@ const SolutionTile = (props: Props) => {
             >
                 {user && (
                     <Fragment>
-                        <p>
+                        <p
+                            onClick={() => {
+                                redirectToUser();
+                            }}
+                            className="user"
+                        >
                             {user.firstName} {user.lastName}
                         </p>
                         <p>{props.solution.language}</p>
