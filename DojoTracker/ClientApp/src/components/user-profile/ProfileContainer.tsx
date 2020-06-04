@@ -1,17 +1,18 @@
-import React, { useState, useEffect, useContext, Fragment } from "react";
-import { IUserStatistics } from "../../static/util/interfaces";
+import React, { useEffect, useContext, Fragment } from "react";
 import { useLocation } from "react-router-dom";
 import { UserDataContext } from "../context/UserDataContextProvider";
-import queryString from "query-string";
 import { Container, ContainerWithRows } from "../styled-components/Reusables";
 import ProfileCard from "./ProfileCard";
 import ProfileMenu from "./ProfileMenu";
 import ProfileData from "./ProfileData";
 import styled from "styled-components";
+import ProfileSolutions from "./solutions/ProfileSolutions";
+import { ProfilePageContext } from "../context/ProfilePageContextProvider";
 
 const StyledProfilePage = styled(ContainerWithRows)`
     justify-content: space-between;
     align-items: flex-start;
+    margin-top: 2rem;
     width: 80%;
     height: 100%;
 `;
@@ -24,19 +25,16 @@ const SmallContainer = styled(Container)`
 interface Props {}
 
 const ProfileContainer = (props: Props) => {
-    const [userData, setUserData] = useState<any | IUserStatistics>();
-    const [isCurrentUser, setIsCurrentUser] = useState<any | boolean>();
     const { user, getUserDataById } = useContext(UserDataContext);
+    const { profileState, userData, setUserData, setIsCurrentUser } = useContext(ProfilePageContext);
 
     const location = useLocation();
+    const requestedUserId = (location.state as any)?.userId;
 
     useEffect(() => {
         (async function getUserData() {
-            const requestedUserId = queryString.parse(location.search).id;
-
-            if (requestedUserId === undefined) {
+            if (requestedUserId === user?.id) {
                 setUserData(user);
-                console.log(user);
                 setIsCurrentUser(true);
             } else {
                 const otherUser = await getUserDataById(requestedUserId);
@@ -44,7 +42,13 @@ const ProfileContainer = (props: Props) => {
                 setIsCurrentUser(false);
             }
         })();
-    }, [user]);
+    }, [requestedUserId, user]);
+
+    const PROFILE_COMPONENTS: any = {
+        profile: <ProfileData />,
+        solutions: <ProfileSolutions />,
+        statistics: <ProfileData />,
+    };
 
     return (
         <StyledProfilePage>
@@ -54,7 +58,7 @@ const ProfileContainer = (props: Props) => {
                         <ProfileCard user={userData} />
                         <ProfileMenu />
                     </SmallContainer>
-                    <ProfileData />
+                    {PROFILE_COMPONENTS[profileState]}
                 </Fragment>
             )}
         </StyledProfilePage>
