@@ -1,6 +1,5 @@
 import React from "react";
 import { IBasicUserInfo } from "../../static/util/interfaces";
-import { StyledCard } from "../styled-components/Reusables";
 import styled from "styled-components";
 
 const StyledProfileCard = styled.div`
@@ -35,7 +34,7 @@ interface Props {
 const ProfileCard = (props: Props) => {
     return (
         <StyledProfileCard>
-            <img src={require("../../static/img/profile-placeholder.png")}></img>
+            <img alt="Profile" src={require("../../static/img/profile-placeholder.png")}></img>
             <h3>
                 {props.user.firstName} {props.user.lastName}
             </h3>
