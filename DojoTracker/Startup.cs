@@ -46,16 +46,16 @@ namespace DojoTracker
                 options.Cookie.Name = "credentials";
                 options.ExpireTimeSpan = TimeSpan.FromHours(24);
                 /*options.Cookie.Domain = "localhost"; */
-                options.LoginPath = "https://track-that-dojo.herokuapp.com/login";
-                options.LogoutPath = "https://track-that-dojo.herokuapp.com/logout";
+                options.LoginPath = "login";
+                options.LogoutPath = "logout";
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
                 options.SlidingExpiration = true;
             });
-            /*
+            
             services.AddSpaStaticFiles(configuration => {
                 configuration.RootPath = "ClientApp/build";
             });
-            */
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,8 +72,6 @@ namespace DojoTracker
 
             app.UseSpaStaticFiles();
             
-            
-            /*
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
@@ -83,8 +81,6 @@ namespace DojoTracker
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
-            
-            */
             
             app.UseEndpoints(endpoints =>
             {
