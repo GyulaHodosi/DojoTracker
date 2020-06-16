@@ -12,5 +12,6 @@ namespace DojoTracker.Services.Repositories.Interfaces
         Task<Dojo> GetDojoByIdAsync(int dojoId);
         Task AddDojo(Dojo dojo);
         Task<IEnumerable<Dojo>> ListUserDojosByDojoNameAsync(string userId, string dojoTitle);
+        Task<bool> IsDojoComplete(int dojoId, string userId);
     }
 }
