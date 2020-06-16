@@ -85,6 +85,13 @@ namespace DojoTracker.Services.Repositories
             return _context.Solutions.Select(solution => solution.DojoId).Distinct();
         }
 
+        public async Task DeleteSolution(int dojoId, string language, string userId)
+        {
+            var solutionToRemove = await GetUserSolutionByDojoIdAsync(dojoId, userId, language);
+            _context.Solutions.Remove(solutionToRemove);
+            await _context.SaveChangesAsync();
+        }
+
 
         private async Task<Solution> FindSolution(Solution solution)
         {
