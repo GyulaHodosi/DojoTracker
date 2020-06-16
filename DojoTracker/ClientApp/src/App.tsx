@@ -33,6 +33,7 @@ import SolutionContextProvider from "./components/context/SolutionContextProvide
 import SolutionsContainer from "./components/solution/other_users/SolutionsContainer";
 import ProfileContainer from "./components/user-profile/ProfileContainer";
 import ProfilePageContextProvider from "./components/context/ProfilePageContextProvider";
+import ConfirmDelete from "./components/solution/self/ConfirmDelete";
 
 function App() {
     setup.setupInterceptors();
@@ -72,6 +73,11 @@ function App() {
                                     <ProfilePageContextProvider>
                                         <ProfileContainer />
                                     </ProfilePageContextProvider>
+                                </PrivateRoute>
+                                <PrivateRoute exact path="/solutions/delete/:dojoId">
+                                    <SolutionEditorContextProvider>
+                                        <ConfirmDelete />
+                                    </SolutionEditorContextProvider>
                                 </PrivateRoute>
                                 <AdminRoute exact path="/admin/statistics">
                                     <UserStatContextProvider>
