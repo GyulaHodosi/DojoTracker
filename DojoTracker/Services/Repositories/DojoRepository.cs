@@ -54,11 +54,14 @@ namespace DojoTracker.Services.Repositories
 
         public async Task<IEnumerable<Dojo>> ListDojosByUserIdAsync(string userId)
         {
-            var dojos = await _context.Dojos.OrderByDescending(d => d.Id).ToListAsync();
+             return await _context.Dojos.OrderByDescending(d => d.Id).ToListAsync();
+        }
 
-            await MarkAsSolved(dojos, userId);
+        public async Task<bool> IsDojoComplete(int dojoId, string userId)
+        {
+            var solutions =  await _context.Solutions.Where(solution => solution.UserId == userId && solution.DojoId == dojoId).ToListAsync();
 
-            return dojos;
+            return solutions.Count > 0;
         }
 
         private async Task MarkAsSolved(IEnumerable<Dojo> dojos, string userId)

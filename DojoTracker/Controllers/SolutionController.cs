@@ -71,5 +71,15 @@ namespace DojoTracker.Controllers
 
             return Ok(solutions);
         }
+
+        [HttpDelete("delete")]
+        [Authorize]
+        public async Task<IActionResult> DeleteSolution(int dojoId, string language)
+        {
+            var userId = (await _userManager.GetUserAsync(User)).Id;
+            await _repository.DeleteSolution(dojoId, language, userId);
+
+            return Ok();
+        }
     }
 }

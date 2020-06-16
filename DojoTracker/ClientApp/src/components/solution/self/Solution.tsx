@@ -18,7 +18,6 @@ const Solution = ({ dojo }: { dojo: IBasicDojoInfo }) => {
 
     const saveSolution = () => {
         postSolution();
-        dojo.isDone = true;
         history.push({
             pathname: `/dojos/${dojo.id}/sucess`,
             state: { title: dojo.title, language: language },
@@ -30,7 +29,7 @@ const Solution = ({ dojo }: { dojo: IBasicDojoInfo }) => {
             <h3>{dojo.title}</h3>
             <EditorImputs />
             <SolutionEditor isComplete={dojo.isDone} />
-            <ActionButtons link={dojo.url} onSave={saveSolution} />
+            <ActionButtons link={dojo.url} onSave={saveSolution} title={dojo.title} isDone={dojo.isDone} />
         </CustomContainer>
     );
 };

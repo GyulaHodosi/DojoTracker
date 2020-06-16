@@ -13,6 +13,7 @@ interface ContextStateProp {
     listSearch: Function;
     getTitleById: Function;
     addDojo: Function;
+    fetchAll: Function;
 }
 
 export const DojoContext = createContext<ContextStateProp>({} as ContextStateProp);
@@ -25,7 +26,7 @@ const DojoContextProvider = ({ children }: { children: ReactNode }) => {
 
     useEffect(() => {
         if (isLoggedIn === true) {
-            listAll();
+            fetchAll();
         }
     }, [isLoggedIn, searchValue]);
 
@@ -35,7 +36,7 @@ const DojoContextProvider = ({ children }: { children: ReactNode }) => {
             : dojos.find((dojo: IBasicDojoInfo) => dojo.id === id);
     };
 
-    const listAll = () => {
+    const fetchAll = () => {
         axios.get(`/api/dojo/list`).then((response: AxiosResponse<IBasicDojoInfo>) => {
             setDojos(response.data);
         });
@@ -43,7 +44,7 @@ const DojoContextProvider = ({ children }: { children: ReactNode }) => {
 
     const listSearch = () => {
         if (searchValue === "") {
-            listAll();
+            fetchAll();
         } else {
             axios.get(`/api/dojo/search?title=${searchValue}`).then((response: AxiosResponse<IBasicDojoInfo>) => {
                 setDojos(response.data);
@@ -65,8 +66,12 @@ const DojoContextProvider = ({ children }: { children: ReactNode }) => {
         });
     };
 
+    const isDojoComplete = async (dojoId: string) => {
+        return await axios.get(`/api/dojo/status/${dojoId}`);
+    };
+
     return (
-        <DojoContext.Provider value={{ dojos, setDojos, getById, listSearch, getTitleById, addDojo }}>
+        <DojoContext.Provider value={{ dojos, setDojos, getById, listSearch, getTitleById, addDojo, fetchAll }}>
             {children}
         </DojoContext.Provider>
     );

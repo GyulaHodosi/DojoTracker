@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, Fragment } from "react";
 import styled from "styled-components";
 import { EmptyButton } from "../../styled-components/Reusables";
 import { useHistory } from "react-router-dom";
@@ -35,12 +35,14 @@ const StyledWrapper = styled.div`
 interface Props {
     link: string;
     onSave: Function;
+    title: string;
+    isDone: boolean;
 }
 
 const ActionButtons = (props: Props) => {
     const history = useHistory();
 
-    const { dojoId } = useContext(SolutionEditorContext);
+    const { dojoId, language, solution } = useContext(SolutionEditorContext);
 
     const goToDojoPage = () => {
         window.open(props.link, "_blank");
@@ -50,17 +52,35 @@ const ActionButtons = (props: Props) => {
         history.push(`/solutions/${dojoId}`);
     };
 
+    const confirmDelete = () => {
+        history.push({
+            pathname: `/solutions/delete/${dojoId}`,
+            state: { id: dojoId, language: language, title: props.title },
+        });
+    };
+
     return (
         <StyledWrapper>
             <EmptyButton onClick={goToDojoPage} id="dojo-link-btn">
                 Attempt
             </EmptyButton>
             <EmptyButton onClick={() => props.onSave()} id="save-solution-btn">
-                Save solution
+                Save
             </EmptyButton>
-            <EmptyButton onClick={() => goToSolutions()} id="unlock-solutions-btn">
-                Unlock solutions
-            </EmptyButton>
+
+            <Fragment>
+                <EmptyButton
+                    onClick={() => confirmDelete()}
+                    id="delete-solution-btn"
+                    danger
+                    disabled={solution === undefined}
+                >
+                    Delete
+                </EmptyButton>
+                <EmptyButton onClick={() => goToSolutions()} id="unlock-solutions-btn" disabled={!props.isDone}>
+                    Unlock solutions
+                </EmptyButton>
+            </Fragment>
         </StyledWrapper>
     );
 };

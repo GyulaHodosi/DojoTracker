@@ -85,5 +85,13 @@ namespace DojoTracker.Controllers
             await _repository.AddDojo(dojo);
             return Ok();
         }
+
+        [HttpGet("{id}/status")]
+        public async Task<IActionResult> CheckCompletionStatus(int id)
+        {
+            var userId = (await _userManager.GetUserAsync(User)).Id;
+            var isDone = await  _repository.IsDojoComplete(id, userId);
+            return Ok(isDone);
+        }
     }
 }

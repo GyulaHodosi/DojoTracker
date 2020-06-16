@@ -14,6 +14,7 @@ interface ContextStateProp {
     updateSolution: Function;
     postSolution: Function;
     setDojoId: Function;
+    deleteSolution: Function;
 }
 
 export const SolutionEditorContext = createContext({} as ContextStateProp);
@@ -52,6 +53,10 @@ const SolutionEditorContextProvider = ({ children }: { children: ReactNode }) =>
         [setSolution]
     );
 
+    const deleteSolution = (dojoId: string, language: string) => {
+        axios.delete(`/api/solutions/delete?dojoId=${parseInt(dojoId)}&language=${language}`);
+    };
+
     return (
         <SolutionEditorContext.Provider
             value={{
@@ -64,6 +69,7 @@ const SolutionEditorContextProvider = ({ children }: { children: ReactNode }) =>
                 setDojoId,
                 setTheme,
                 setLanguage,
+                deleteSolution,
             }}
         >
             {children}
