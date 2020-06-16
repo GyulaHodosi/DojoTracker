@@ -75,10 +75,21 @@ export const EmptyButton = styled.button`
     cursor: pointer;
     letter-spacing: 0.1rem;
     transition: background-color 0.5s;
+    min-width: 7rem;
 
     &:hover {
         background-color: ${(props) => (props.danger ? "#dc3545" : "#4d4d4d")};
         color: white;
+    }
+
+    &:disabled {
+        opacity: 0.8;
+
+        &:hover {
+            background-color: inherit;
+            color: ${(props: ButtonProps) => (props.danger ? "#dc3545" : "#4d4d4d")};
+            cursor: default;
+        }
     }
 `;
 
