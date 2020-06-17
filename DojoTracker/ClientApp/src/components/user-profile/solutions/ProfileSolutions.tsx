@@ -59,7 +59,7 @@ const ProfileSolutions = (props: Props) => {
         <StyledProfileData>
             {userData && (
                 <Fragment>
-                    <h3>Completed dojos</h3>
+                    <h3 id="profile-solutions-title">Completed dojos</h3>
                     <ProfileSolutionHeaders
                         onClick={(event: any) => {
                             sortOnClick(event);
