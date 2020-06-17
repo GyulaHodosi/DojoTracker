@@ -35,10 +35,10 @@ const ProfileCard = (props: Props) => {
     return (
         <StyledProfileCard>
             <img alt="Profile" src={require("../../static/img/profile-placeholder.png")}></img>
-            <h3>
+            <h3 id="profile-user-name">
                 {props.user.firstName} {props.user.lastName}
             </h3>
-            <p>{props.user.email}</p>
+            <p id="profile-user-email">{props.user.email}</p>
         </StyledProfileCard>
     );
 };
