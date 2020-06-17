@@ -38,7 +38,8 @@ namespace DojoTracker
             services.AddScoped(typeof(IStatGenerator), typeof(StatGenerator));
             services.AddScoped(typeof(IAccountManager), typeof(AccountManager));
             services.AddControllers();
-            services.AddDbContextPool<DojoTrackerDbContext>(option => { option.UseNpgsql(Environment.GetEnvironmentVariable("CONNECTION_STRING")); });
+            services.AddDbContextPool<DojoTrackerDbContext>(builder =>
+                builder.UseNpgsql(Configuration.GetConnectionString("DojoTrackerDBConnection")));
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<DojoTrackerDbContext>();
             services.ConfigureApplicationCookie(options=>
             {
@@ -46,8 +47,8 @@ namespace DojoTracker
                 options.Cookie.Name = "credentials";
                 options.ExpireTimeSpan = TimeSpan.FromHours(24);
                 /*options.Cookie.Domain = "localhost"; */
-                options.LoginPath = "login";
-                options.LogoutPath = "logout";
+                options.LoginPath = "/login";
+                options.LogoutPath = "/logout";
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
                 options.SlidingExpiration = true;
             });
@@ -55,6 +56,7 @@ namespace DojoTracker
             services.AddSpaStaticFiles(configuration => {
                 configuration.RootPath = "ClientApp/build";
             });
+            
             
         }
 
@@ -71,7 +73,7 @@ namespace DojoTracker
             app.UseAuthorization();
 
             app.UseSpaStaticFiles();
-            
+            /*
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
@@ -81,7 +83,7 @@ namespace DojoTracker
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
-            
+            */
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
