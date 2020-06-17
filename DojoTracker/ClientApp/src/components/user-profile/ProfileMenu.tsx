@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faChartBar, faList } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
@@ -35,7 +35,17 @@ const StyledProfileMenu = styled.div`
 interface Props {}
 
 const ProfileMenu = (props: Props) => {
-    const { setProfileState } = useContext(ProfilePageContext);
+    const { setProfileState, profileState, isCurrentUser } = useContext(ProfilePageContext);
+
+    useEffect(() => {
+        let menuElements: HTMLDivElement[] = Array.from(document.querySelectorAll("[data-menureference]"));
+
+        menuElements.forEach((element) =>
+            element.dataset.menureference === profileState
+                ? element.classList.add("active")
+                : element.classList.remove("active")
+        );
+    }, [profileState]);
 
     const toggleSelected = (event: any) => {
         if (event?.target?.dataset?.menureference !== undefined) {
@@ -50,15 +60,18 @@ const ProfileMenu = (props: Props) => {
                 toggleSelected(event);
             }}
         >
-            <div data-menureference="profile">
-                <FontAwesomeIcon icon={faUser} size="1x" data-menureference="profile" />
-                <span data-menureference="profile">Profile</span>
-            </div>
-            <div data-menureference="statistics">
+            {isCurrentUser && (
+                <div data-menureference="profile" id="profile-nav-link">
+                    <FontAwesomeIcon icon={faUser} size="1x" data-menureference="profile" />
+                    <span data-menureference="profile">Settings</span>
+                </div>
+            )}
+
+            <div data-menureference="statistics" id="statistics-nav-link">
                 <FontAwesomeIcon icon={faChartBar} size="1x" data-menureference="statistics" />
                 <span data-menureference="statistics">Statistics</span>
             </div>
-            <div data-menureference="solutions">
+            <div data-menureference="solutions" id="solutions-nav-link">
                 <FontAwesomeIcon icon={faList} size="1x" data-menureference="solutions" />
                 <span data-menureference="solutions">Solutions</span>
             </div>
