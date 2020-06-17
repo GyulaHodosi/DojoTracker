@@ -39,7 +39,7 @@ namespace DojoTracker
             services.AddScoped(typeof(IAccountManager), typeof(AccountManager));
             services.AddControllers();
             services.AddDbContextPool<DojoTrackerDbContext>(builder =>
-                builder.UseNpgsql(Configuration.GetConnectionString("DojoTrackerDBConnection")));
+                builder.UseNpgsql(Environment.GetEnvironmentVariable("CONNECTION_STRING")));
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<DojoTrackerDbContext>();
             services.ConfigureApplicationCookie(options=>
             {
@@ -73,7 +73,7 @@ namespace DojoTracker
             app.UseAuthorization();
 
             app.UseSpaStaticFiles();
-            /*
+            
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
@@ -83,7 +83,7 @@ namespace DojoTracker
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
-            */
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
