@@ -207,3 +207,25 @@ export const StyledCard = styled.div`
         width: 80%;
     }
 `;
+
+export const StyledForm = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 60%;
+
+    & input {
+        width: 50%;
+        height: 20%;
+        padding: 1rem;
+        margin: 1rem;
+        border-radius: 5px;
+        color: gray;
+    }
+
+    & .select {
+        width: 54%;
+    }
+`;
