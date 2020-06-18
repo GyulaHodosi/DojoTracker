@@ -1,29 +1,6 @@
 import React, { useState, useContext } from "react";
-import { CenteredContainer, EmptyButton } from "../../styled-components/Reusables";
+import { CenteredContainer, EmptyButton, StyledForm } from "../../styled-components/Reusables";
 import { DojoContext } from "../../context/DojoContextProvider";
-import styled from "styled-components";
-
-const StyledForm = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: 60%;
-
-    & input {
-        width: 50%;
-        height: 20%;
-        padding: 1rem;
-        margin: 1rem;
-        border-radius: 5px;
-        color: gray;
-    }
-
-    & .select {
-        width: 54%;
-    }
-`;
 
 interface Props {}
 
