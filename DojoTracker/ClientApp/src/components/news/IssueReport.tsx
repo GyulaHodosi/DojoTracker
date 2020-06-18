@@ -23,7 +23,7 @@ const IssueReport = (props: Props) => {
 
     return (
         <StyledTile>
-            <EmptyButton danger onClick={() => redirect()}>
+            <EmptyButton danger onClick={() => redirect()} id="report-issue-btn">
                 Report an issue
             </EmptyButton>
         </StyledTile>

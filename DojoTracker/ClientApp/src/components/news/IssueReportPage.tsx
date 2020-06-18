@@ -109,6 +109,7 @@ const IssueReportPage = (props: Props) => {
                         onClick={() => {
                             clearForm();
                         }}
+                        id="clear-form-btn"
                     >
                         Clear form
                     </EmptyButton>
@@ -116,6 +117,7 @@ const IssueReportPage = (props: Props) => {
                         onClick={() => {
                             submitIssue();
                         }}
+                        id="submit-report-btn"
                     >
                         Send
                     </EmptyButton>

@@ -22,8 +22,12 @@ const ReportSuccess = (props: Props) => {
                 no time!
             </h3>
             <div>
-                <EmptyButton onClick={goNew}>Report another</EmptyButton>
-                <EmptyButton onClick={goBack}>Home</EmptyButton>
+                <EmptyButton onClick={goNew} id="post-new-issue-btn">
+                    Report another
+                </EmptyButton>
+                <EmptyButton onClick={goBack} id="back-to-landingpage-btn">
+                    Home
+                </EmptyButton>
             </div>
         </CenteredContainer>
     );
