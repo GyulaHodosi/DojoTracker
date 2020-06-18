@@ -53,7 +53,7 @@ const SolutionEditor = (props: Props) => {
                 defaultValue={""}
                 mode={language}
                 theme={theme}
-                name={`solutin`}
+                name={`solution`}
                 onChange={(value: string) => changeTextInEditor(value)}
                 fontSize={14}
                 showPrintMargin={true}

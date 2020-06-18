@@ -29,7 +29,7 @@ const DojoCard = (props: Props) => {
 
     return (
         <StyledCard onClick={(event) => redirect(event)} className="dojo-card" id={`dojo-card-${props.dojo.id}`}>
-            <p>{props.dojo.title}</p>
+            <p id="dojo-title">{props.dojo.title}</p>
             <StatusIndicator isComplete={isComplete} />
             <EmptyButton className="redirect-btn" id={`dojo-link-${props.dojo.id}`}>
                 Attempt

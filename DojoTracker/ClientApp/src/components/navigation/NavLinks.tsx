@@ -94,6 +94,11 @@ const NavLinks = (props: Props) => {
                             Profile
                         </CustomNavlink>
                     </p>
+                    <p id="news-link-nav">
+                        <CustomNavlink to="/news" activeClassName="nav-active">
+                            News
+                        </CustomNavlink>
+                    </p>
                 </StyledNavLinks>
             )}
         </Fragment>
