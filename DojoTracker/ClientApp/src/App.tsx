@@ -34,6 +34,10 @@ import SolutionsContainer from "./components/solution/other_users/SolutionsConta
 import ProfileContainer from "./components/user-profile/ProfileContainer";
 import ProfilePageContextProvider from "./components/context/ProfilePageContextProvider";
 import ConfirmDelete from "./components/solution/self/ConfirmDelete";
+import NewsPage from "./components/news/NewsPage";
+import IssueReportPage from "./components/news/IssueReportPage";
+import IssueContextProvider, { IssueContext } from "./components/context/IssueContextProvider";
+import ReportSuccess from "./components/news/ReportSuccess";
 
 function App() {
     setup.setupInterceptors();
@@ -78,6 +82,17 @@ function App() {
                                     <SolutionEditorContextProvider>
                                         <ConfirmDelete />
                                     </SolutionEditorContextProvider>
+                                </PrivateRoute>
+                                <PrivateRoute exact path="/news">
+                                    <NewsPage />
+                                </PrivateRoute>
+                                <PrivateRoute exact path="/report">
+                                    <IssueContextProvider>
+                                        <IssueReportPage />
+                                    </IssueContextProvider>
+                                </PrivateRoute>
+                                <PrivateRoute exact path="/report/success">
+                                    <ReportSuccess />
                                 </PrivateRoute>
                                 <AdminRoute exact path="/admin/statistics">
                                     <UserStatContextProvider>
