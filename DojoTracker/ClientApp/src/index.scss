@@ -168,15 +168,15 @@ img {
 
 /* LABEL ======================================= */
 .select-label {
-    color: rgba(0, 0, 0, 0.26);
+    color: rgba(0, 0, 0, 0.30);
     background: white;
-    font-size: 0.5rem;
+    font-size: 1rem;
     font-weight: normal;
     position: absolute;
     pointer-events: none;
     padding: 0 5px;
-    left: 8%;
-    top: 40%;
+    left: 2%;
+    top: 25%;
     transition: 0.2s ease all;
 }
 
