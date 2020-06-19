@@ -9,6 +9,7 @@ using DojoTracker.Services.Statistics.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
@@ -46,16 +47,20 @@ namespace DojoTracker
                 options.Cookie.HttpOnly = true;
                 options.Cookie.Name = "credentials";
                 options.ExpireTimeSpan = TimeSpan.FromHours(24);
-                /*options.Cookie.Domain = "localhost"; */
+                options.Cookie.Domain = "track-that-dojo.herokuapp.com";
                 options.LoginPath = "/login";
                 options.LogoutPath = "/logout";
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
                 options.SlidingExpiration = true;
+                options.Cookie.SameSite = SameSiteMode.None;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
             });
             
+            /*
             services.AddSpaStaticFiles(configuration => {
                 configuration.RootPath = "ClientApp/build";
             });
+            */
             
             
         }
@@ -73,6 +78,7 @@ namespace DojoTracker
             app.UseAuthorization();
 
             app.UseSpaStaticFiles();
+            /*
             
             app.UseSpa(spa =>
             {
@@ -83,6 +89,7 @@ namespace DojoTracker
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+            */
             
             app.UseEndpoints(endpoints =>
             {
