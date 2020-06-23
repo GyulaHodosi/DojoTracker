@@ -118,5 +118,14 @@ namespace DojoTracker.Controllers
 
             return Ok(publicUser);
         }
+
+        [HttpPatch]
+        [Authorize]
+        public async Task<IActionResult> UpdateUser(PublicUserData publicUser)
+        {
+            await _accountManager.UpdateUser(publicUser);
+
+            return Ok();
+        }
     }
 }
