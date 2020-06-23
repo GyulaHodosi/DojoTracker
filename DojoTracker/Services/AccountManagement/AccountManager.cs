@@ -9,10 +9,12 @@ namespace DojoTracker.Services.AccountManagement
     {
 
         private readonly UserManager<User> _userManager;
+        private readonly DojoTrackerDbContext _context;
 
-        public AccountManager(UserManager<User> userManager)
+        public AccountManager(UserManager<User> userManager, DojoTrackerDbContext context)
         {
             _userManager = userManager;
+            _context = context;
         }
 
         public async Task<PublicUserData> GeneratePublicProfileAsync(User user)
@@ -37,6 +39,19 @@ namespace DojoTracker.Services.AccountManagement
             {
                 await _userManager.AddToRoleAsync(user, "Administrator");
             }
+        }
+
+        public async Task UpdateUser(PublicUserData publicUser)
+        {
+            var user = await _userManager.FindByIdAsync(publicUser.Id);
+
+            user.NickName = publicUser.NickName;
+            user.PreferredLanguage = publicUser.PreferredLanguage;
+            user.PreferredEditorTheme = publicUser.PreferredEditorTheme;
+            
+            await _userManager.UpdateAsync(user);
+
+            await _context.SaveChangesAsync();
         }
 
         private bool IsEligibleForAdminRights(string email)
