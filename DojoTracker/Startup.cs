@@ -37,14 +37,14 @@ namespace DojoTracker
             services.AddScoped(typeof(IAccountManager), typeof(AccountManager));
             services.AddControllers();
             services.AddDbContextPool<DojoTrackerDbContext>(builder =>
-                builder.UseNpgsql(Configuration.GetConnectionString("DojoTrackerDBConnection")));
+                builder.UseNpgsql(Environment.GetEnvironmentVariable("CONNECTION_STRING")));
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<DojoTrackerDbContext>();
             services.ConfigureApplicationCookie(options=>
             {
                 options.Cookie.HttpOnly = true;
                 options.Cookie.Name = "credentials";
                 options.ExpireTimeSpan = TimeSpan.FromHours(24);
-                options.Cookie.Domain = "localhost"; 
+                options.Cookie.Domain = "track-that-dojo.herokuapp.com"; 
                 options.LoginPath = "/login";
                 options.LogoutPath = "/logout";
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
