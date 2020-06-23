@@ -37,7 +37,7 @@ namespace DojoTracker.Services.Repositories
                 _context.Solutions.Add(solution);
 
                 var dojoScore = await GetScoreByDojoIdAsync(solution.DojoId);
-                await UpdateUserScoreOnSubmitAsync(dojoScore, userId);
+                await UpdateUserScoreOnSubmitAsync(dojoScore, userId, solution.DojoId);
             }
 
             await _context.SaveChangesAsync();
@@ -88,8 +88,20 @@ namespace DojoTracker.Services.Repositories
         public async Task DeleteSolution(int dojoId, string language, string userId)
         {
             var solutionToRemove = await GetUserSolutionByDojoIdAsync(dojoId, userId, language);
+
             _context.Solutions.Remove(solutionToRemove);
+            
             await _context.SaveChangesAsync();
+            
+            var score = await GetScoreByDojoIdAsync(dojoId);
+
+            await UpdateUserScoreOnSubmitAsync(Math.Abs(score) * -1, userId, dojoId);
+        }
+
+        public async Task<IEnumerable<Solution>> ListAllSolutionsForDojoByUserIdAsync(string userId, int dojoId)
+        {
+            return await _context.Solutions.Where(solution => solution.UserId == userId && solution.DojoId == dojoId)
+                .ToListAsync();
         }
 
 
@@ -100,13 +112,18 @@ namespace DojoTracker.Services.Repositories
                                                                       s.Language == solution.Language);
         }
 
-        private async Task UpdateUserScoreOnSubmitAsync(int score, string userId)
+        private async Task UpdateUserScoreOnSubmitAsync(int score, string userId, int dojoId)
         {
             var user = await _userManager.FindByIdAsync(userId);
 
-            user.Score += score;
+            var solutionsForDojo = await ListAllSolutionsForDojoByUserIdAsync(userId, dojoId);
 
-            await _userManager.UpdateAsync(user);
+            if (!solutionsForDojo.Any())
+            {
+                user.Score += score;
+
+                await _userManager.UpdateAsync(user);
+            }
         }
 
         private async Task<int> GetScoreByDojoIdAsync(int dojoId)

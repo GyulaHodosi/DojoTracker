@@ -17,5 +17,6 @@ namespace DojoTracker.Services.Repositories.Interfaces
         Task<IEnumerable<string>> ListUserIdsByDojoIdAsync(int dojoId);
         IQueryable<int> ListAllDojoIdsWithASolution();
         Task DeleteSolution(int dojoId, string language, string userId);
+        Task<IEnumerable<Solution>> ListAllSolutionsForDojoByUserIdAsync(string userId, int dojoId);
     }
 }
