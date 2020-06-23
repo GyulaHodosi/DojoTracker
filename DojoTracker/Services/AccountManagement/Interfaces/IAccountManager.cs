@@ -7,5 +7,6 @@ namespace DojoTracker.Services.AccountManagement.Interfaces
     {
         Task<PublicUserData> GeneratePublicProfileAsync(User user);
         Task AssignRoles(User user);
+        Task UpdateUser(PublicUserData publicUser);
     }
 }
