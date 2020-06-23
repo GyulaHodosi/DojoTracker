@@ -9,14 +9,11 @@ using DojoTracker.Services.Statistics.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace DojoTracker
 {
@@ -40,14 +37,14 @@ namespace DojoTracker
             services.AddScoped(typeof(IAccountManager), typeof(AccountManager));
             services.AddControllers();
             services.AddDbContextPool<DojoTrackerDbContext>(builder =>
-                builder.UseNpgsql(Environment.GetEnvironmentVariable("CONNECTION_STRING")));
+                builder.UseNpgsql(Configuration.GetConnectionString("DojoTrackerDBConnection")));
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<DojoTrackerDbContext>();
             services.ConfigureApplicationCookie(options=>
             {
                 options.Cookie.HttpOnly = true;
                 options.Cookie.Name = "credentials";
                 options.ExpireTimeSpan = TimeSpan.FromHours(24);
-                options.Cookie.Domain = "track-that-dojo.herokuapp.com";
+                options.Cookie.Domain = "localhost"; 
                 options.LoginPath = "/login";
                 options.LogoutPath = "/logout";
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
